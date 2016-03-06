@@ -1,0 +1,7 @@
+﻿@model List<EC_TH2012_J.Models.SanPham>
+@foreach(var temp in Model)
+{
+    <div class="no-margin carousel-item product-item-holder size-small hover">
+        @Html.Partial("_ProductGridShowPartal",temp)
+    </div><!-- /.product-item-holder -->
+}

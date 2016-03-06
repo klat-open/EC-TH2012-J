@@ -1,0 +1,15 @@
+﻿<div>
+    @{
+        var myChart = new Chart(width: 1024, height: 1024)
+            .AddTitle("Tỉ trọng số lượng bán theo sản phẩm")
+            .AddSeries(
+            name: "Employee",
+            chartType: "Pie",
+            xValue: Model, xField: "TenSP",
+            yValues: Model, yFields: "SL")
+            .AddLegend()
+            .Write();
+            
+            
+    }
+</div>

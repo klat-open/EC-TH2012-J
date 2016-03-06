@@ -1,0 +1,72 @@
+﻿@model List<EC_TH2012_J.Models.ThongSoKyThuat>
+@{
+    ViewBag.Title = "Thông số kỹ thuật của sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <input id="CountFeld" name="CountFeld" type="hidden" value="@Model.Count">
+                @using (Html.BeginForm("ThemThongSoKT", "Admin", FormMethod.Post, new { id = "ThemThongSoKT" }))
+                {
+                    <div class="form-horizontal">
+                        <div class="alert alert-info">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary()
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model[0].ThuocTinh, new { @class = "center-text col-md-2" })
+                            @Html.LabelFor(model => model[0].GiaTri, new { @class = "center-text col-md-4" })
+                        </div>
+                        <div id="thongsoktgrp">
+                            @for (int i = 0; i < Model.Count; ++i)
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-2">
+                                        @Html.Hidden("lstkt[" + i + "].MaSP", Model[i].MaSP)
+                                        @Html.TextBox("lstkt[" + i + "].ThuocTinh", String.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessage("lstkt[" + i + "].ThuocTinh")
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.TextBox("lstkt[" + i + "].GiaTri", String.Empty, new { @class = "form-control" })
+                                        @Html.ValidationMessage("lstkt[" + i + "].GiaTri")
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <a class="btn btn-info" href='javascript:ThemTSKTMoi("@Model[0].MaSP")'>
+                                    <i class="glyphicon glyphicon-plus icon-white"></i>
+                                    Thêm thuộc tính mới
+                                </a>
+                                <a class="btn btn-danger" href='javascript:XoaTSKT()'>
+                                    <i class="glyphicon glyphicon-minus icon-white"></i>
+                                    Xóa thuộc tính vừa thêm
+                                </a>
+                                <a class="btn btn-success" href='javascript:submitform("ThemThongSoKT")'>
+                                    <i class="glyphicon glyphicon-book icon-white"></i>
+                                    Lưu lại
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

@@ -1,0 +1,42 @@
+﻿@model EC_TH2012_J.Models.SanPham
+
+<div class="product-item">
+    @if (Model.GiaTien < Model.GiaGoc)
+    {
+        <div class="ribbon green"><span>Giảm</span></div>
+    }
+    @if (Model.isnew == true)
+    {
+        <div class="ribbon blue"><span>Mới nhập</span></div>
+    }
+    @if (Model.ishot == true)
+    {
+        <div class="ribbon red"><span>Hot</span></div>
+    }
+    @*<div class="ribbon blue"><span>new!</span></div>*@
+        @*<div class="ribbon green"><span>bestseller</span></div>*@
+        <div class="image">
+            <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" />
+        </div>
+        <div class="body">
+            <div class="label-discount clear"></div>
+            @*<div class="label-discount green">Giảm 50%</div>*@
+            <div class="title">
+                <a href="@Url.Action("Index", "SanPham", new { id = @Model.MaSP })">@Model.TenSP</a>
+            </div>
+            <div class="brand">@Model.HangSanXuat.TenHang</div>
+        </div>
+        <div class="prices">
+            @if(Model.GiaTien < Model.GiaGoc){  <div class="price-prev">@string.Format("{0:0,0}", Model.GiaGoc)  VNĐ</div> }
+            <div class="price-current text-right"> @string.Format("{0:0,0}", Model.GiaTien)  VNĐ</div>
+        </div>
+        <div class="hover-area">
+            <div class="add-cart-button">
+                <a href="javascript:;" class="le-button" onclick="Addcart('@Model.MaSP',1)">Cho vào giỏ</a>
+            </div>
+            <div class="wish-compare">
+                <a class="btn-add-to-wishlist" href="#">Yêu thích</a>
+                <a class="btn-add-to-compare" href="#">So sánh</a>
+            </div>
+        </div>
+    </div><!-- /.product-item -->

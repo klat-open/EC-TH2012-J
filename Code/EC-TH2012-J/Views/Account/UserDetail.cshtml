@@ -1,0 +1,54 @@
+﻿@model EC_TH2012_J.Models.AspNetUser
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="closeDialog();">×</button>
+                <h3>Chi tiết về @Model.UserName </h3>
+            </div>
+            <div class="modal-body">
+                <table class="table-hover table-bordered">
+                    <tr>
+                        <th>Thuộc tính</th>
+                        <th>Giá Trị</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.UserName)</td>
+                        <td>@Model.UserName</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.Email)</td>
+                        <td>@Model.Email</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.PhoneNumber)</td>
+                        <td>@Model.PhoneNumber</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.DiaChi)</td>
+                        <td>@Model.DiaChi</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.GioiTinh)</td>
+                        <td>@Model.GioiTinh</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.NgaySinh)</td>
+                        <td>@Model.NgaySinh</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.CMND)</td>
+                        <td>@Model.CMND</td>
+                    </tr>
+                </table>
+            </div>
+            @*<div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+                </div>*@
+        </div>
+    </div>
+</div>
+

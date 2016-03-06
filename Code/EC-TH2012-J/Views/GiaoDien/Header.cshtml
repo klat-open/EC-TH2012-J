@@ -1,0 +1,56 @@
+﻿@model List<EC_TH2012_J.Models.GiaoDien>
+<div class="container no-padding">
+
+    <div class="col-xs-12 col-md-3 logo-holder">
+        <!-- ============================================================= LOGO ============================================================= -->
+        <div class="logo">
+            <a href="@Url.Action("Index", "Home")">
+                <img alt="logo" src="@Url.Content("~/images/")@Model[0].GiaTri" width="233" height="54" />
+                <!--<object id="sp" type="image/svg+xml" data="~/template/assets/images/logo.svg" width="233" height="54"></object>-->
+            </a>
+        </div><!-- /.logo -->
+        <!-- ============================================================= LOGO : END ============================================================= -->
+    </div><!-- /.logo-holder -->
+    <div class="col-xs-12 col-md-6 top-search-holder no-margin">
+        <div class="contact-row">
+            <div class="social-icons">
+                <ul>
+                    @if (!string.IsNullOrEmpty(Model[3].GiaTri))
+                    {
+                        <li><a href="@Model[3].GiaTri" class="fa fa-facebook"></a></li>}
+                    @if (!string.IsNullOrEmpty(Model[4].GiaTri))
+                    {
+                        <li><a href="@Model[4].GiaTri" class="fa fa-pinterest"></a></li>}
+                    @if (!string.IsNullOrEmpty(Model[5].GiaTri))
+                    {
+                        <li><a href="@Model[5].GiaTri" class="fa fa-twitter"></a></li>}
+                </ul>
+            </div><!-- /.social-icons -->
+        </div><!-- /.contact-row -->
+        <!-- ============================================================= SEARCH AREA ============================================================= -->
+        <div class="search-area">
+            @Html.Action("SearchForm", "Search")
+        </div><!-- /.search-area -->
+        <!-- ============================================================= SEARCH AREA : END ============================================================= -->
+    </div><!-- /.top-search-holder -->
+    <div class="col-xs-12 col-md-3 top-cart-row no-margin">
+        <div class="top-cart-row-container">
+            @*<div class="wishlist-compare-holder">
+                    <div class="wishlist ">
+                        <a href="#"><i class="fa fa-heart"></i> like <span class="value">(21)</span> </a>
+                    </div>
+                    <div class="compare">
+                        <a href="#"><i class="fa fa-exchange"></i> so sánh <span class="value">(2)</span> </a>
+                    </div>
+                </div>*@
+            <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+            <div class="top-cart-holder dropdown animate-dropdown">
+
+                <div class="basket">
+                    @Html.Action("CartTitle", "Xuligiohang")
+                </div><!-- /.basket -->
+            </div><!-- /.top-cart-holder -->
+        </div><!-- /.top-cart-row-container -->
+        <!-- ============================================================= SHOPPING CART DROPDOWN : END ============================================================= -->
+    </div><!-- /.top-cart-row -->
+</div><!-- /.container -->

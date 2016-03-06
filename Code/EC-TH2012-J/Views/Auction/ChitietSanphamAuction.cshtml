@@ -1,0 +1,169 @@
+﻿@model EC_TH2012_J.Models.Sanphamcanmua
+@{
+    ViewBag.Title = "Chi tiết sản phẩm đấu giá";
+    Layout = "~/Views/Shared/_LayoutB2B.cshtml";
+    ViewBag.TB = Session["TB"];
+    Session["TB"] = null;
+}
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+        if("@ViewBag.TB" != "")
+        {
+            if("@ViewBag.TB" == "True")
+            {
+                alert("Đăng kí bạn đã được lưu lại. Xin cảm ơn đã đăng kí");
+            }
+            else
+            {
+                alert("Đăng kí bị lỗi");
+            }
+        }
+    });
+</script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        
+        $(document).on("click", "#nav a[href]", function () {
+            $.ajax({
+                url: $(this).attr("href"),
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $('#Comments').html(result);
+                    $('html, body').animate({
+                        scrollTop: $("#reviews").offset().top
+                    }, 500);
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+
+<div id="single-product">
+    <div class="container">
+        <div class="no-margin col-xs-12 col-sm-6 col-md-5 gallery-holder">
+            <div class="product-item-holder size-big single-product-gallery small-gallery">
+                <div id="owl-single-product">
+                    <div class="single-product-gallery-item" id="slide1">
+                        <a data-rel="prettyphoto" href="@Url.Content("~/images/products/")@Model.SanPham.AnhDaiDien">
+                            <img class="img-responsive" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.SanPham.AnhDaiDien" width="353" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+                    <div class="single-product-gallery-item" id="slide2">
+                        <a data-rel="prettyphoto" href="@Url.Content("~/images/products/")@Model.SanPham.AnhNen">
+                            <img class="img-responsive" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.SanPham.AnhNen" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+                    <div class="single-product-gallery-item" id="slide3">
+                        <a data-rel="prettyphoto" href="@Url.Content("~/images/products/")@Model.SanPham.AnhKhac">
+                            <img class="img-responsive" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.SanPham.AnhKhac" />
+                        </a>
+                    </div><!-- /.single-product-gallery-item -->
+                </div><!-- /.single-product-slider -->
+
+                <div class="single-product-gallery-thumbs gallery-thumbs">
+                    <div id="owl-single-product-thumbnails">
+                        <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide1">
+                            <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.SanPham.AnhDaiDien" />
+                        </a>
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
+                            <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.SanPham.AnhNen" />
+                        </a>
+                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
+                            <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.SanPham.AnhKhac" />
+                        </a>
+                    </div><!-- /#owl-single-product-thumbnails -->
+                    @*<div class="nav-holder left hidden-xs">
+                            <a class="prev-btn slider-prev" data-target="#owl-single-product-thumbnails" href="#prev"></a>
+                        </div><!-- /.nav-holder -->
+
+                        <div class="nav-holder right hidden-xs">
+                            <a class="next-btn slider-next" data-target="#owl-single-product-thumbnails" href="#next"></a>
+                        </div><!-- /.nav-holder -->*@
+                </div><!-- /.gallery-thumbs -->
+            </div><!-- /.single-product-gallery -->
+        </div><!-- /.gallery-holder -->
+        <div class="no-margin col-xs-12 col-sm-7 body-holder">
+            <div class="body">
+                @*<div class="star-holder inline"><div class="star" data-score="4"></div></div>*@
+                
+                <div class="title"><a href="#">@Model.SanPham.TenSP</a></div>
+                <div class="brand"></div>
+                <div class="social-row">
+                    <span class="st_facebook_hcount"></span>
+                    <span class="st_twitter_hcount"></span>
+                    <span class="st_pinterest_hcount"></span>
+                </div>
+                <div class="buttons-holder">
+                    <label>Chia sẻ với bạn bè</label>
+                </div>
+                <div class="brand"></div>
+                <div class="excerpt">
+                    <p class="text-capitalize">Nội dung khuyến mãi </p>
+                </div>
+                <div class="brand"></div>
+                <div class="countdowns countdownsct">
+                    <div data-countdown="@Model.Ngayketthuc"></div>
+                </div>
+                <div class="qnt-holder">
+                    <div class="soluongct">
+                        Số lượng cần :  @Model.Soluong
+                    </div>
+                    <a id="addto-cart" href="javascript:;" class="le-button huge" data-toggle="modal" data-target="#myModal">Đăng kí</a>
+                </div><!-- /.qnt-holder -->
+            </div><!-- /.body -->
+        </div><!-- /.body-holder -->
+    </div><!-- /.container -->
+</div><!-- /.single-product -->
+<!-- ========================================= SINGLE PRODUCT TAB ========================================= -->
+<section id="single-product-tab">
+    <div class="container">
+        <div class="tab-holder">
+
+            <ul class="nav nav-tabs simple">
+                <li class="active"><a href="#description" data-toggle="tab">Mô tả</a></li>
+                <li><a href="#additional-info" data-toggle="tab">Thông sô kỹ thuật</a></li>
+                <li><a href="#additional-Register" data-toggle="tab">Các nhà cung cấp đã đăng kí</a></li>
+                <li><a href="#reviews" data-toggle="tab">Bình luận</a></li>
+            </ul><!-- /.nav-tabs -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="description">
+                    <p>@Html.Raw(Model.Mota)</p>
+                    
+                </div><!-- /.tab-pane #description -->
+                <div class="tab-pane" id="additional-info">
+                    <h2>Thông số kỹ thuật của @Model.SanPham.TenSP</h2>
+                    @Html.Action("ThongSoKyThuat", "SanPham", new { MaSP = Model.MaSP })
+                </div><!-- /.tab-pane #additional-info -->
+                <div class="tab-pane" id="additional-Register">
+                    <h2>Các nhà cung cấp đã đăng kí bán @Model.SanPham.TenSP</h2>
+                    @Html.Action("DanhsachNCCDK", "Auction", new { IDSPCM = Model.ID })
+                    
+                </div><!-- /.tab-pane #additional-info -->
+
+                <div class="tab-pane" id="reviews">
+                    <div class="comments" id="Comments">
+                        @*@Html.Action("LoadComment", "Comment", new RouteValueDictionary { { "masp", @Model.MaSP } })*@
+                    </div><!-- /.comments -->
+                    <div class="add-review row">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="new-review-form">
+                                @*@Html.Action("AddComment", "Comment", new RouteValueDictionary { { "masp", @Model.MaSP } })*@
+                            </div><!-- /.new-review-form -->
+                        </div><!-- /.col -->
+                    </div><!-- /.add-review -->
+                </div><!-- /.tab-pane #reviews -->
+            </div><!-- /.tab-content -->
+        </div><!-- /.tab-holder -->
+    </div><!-- /.container -->
+</section><!-- /#single-product-tab -->
+<!-- ========================================= SINGLE PRODUCT TAB : END ========================================= -->
+<!-- ========================================= SAN PHAM LIEN QUAN ========================================= -->
+<!-- /#recently-reviewd -->
+@*@Html.Action("Loadsplienquan", "SanPham", new { maloai = @Model.LoaiSP, sl = 6 });*@
+<!-- ========================================= RECENTLY VIEWED : END ========================================= -->
+
+@Html.Action("ModalRegister", "Auction", new { ID = Model.ID})

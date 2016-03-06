@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutB2B.cshtml";
+}
+
+<section id="gaming">
+    <div class="grid-list-products">
+        <h2 class="section-title">Danh sách sản phẩm cần mua</h2>
+
+        <div class="control-bar">
+            @*Chưa code phần sort*@
+            <div id="popularity-sort" class="le-select">
+                <select data-placeholder="sort by popularity">
+                    <option value="1">Sắp xếp theo loại</option>
+                    <option value="2">Sắp xếp theo hãng</option>
+                    <option value="3">Sắp xếp theo giá</option>
+                </select>
+            </div>
+
+            <div id="item-count" class="le-select">
+                <select>
+                    <option value="1">Tăng dần</option>
+                    <option value="2">Giảm dần</option>
+                </select>
+            </div>
+            <div class="grid-list-buttons">
+                <ul>
+                    <li class="grid-list-button-item active"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Lưới</a></li>
+                    <li class="grid-list-button-item "><a data-toggle="tab" href="#list-view"><i class="fa fa-th-list"></i> Dánh sách</a></li>
+                </ul>
+            </div>
+        </div><!-- /.control-bar -->
+        <div id="grid-view" class="products-grid fade tab-pane in active">
+            @Html.Action("Danhsachcanmua", "Auction")
+        </div><!-- /.products-grid #grid-view -->
+        <div class="tab-content">
+            
+        </div><!-- /.tab-content -->
+    </div><!-- /.grid-list-products -->
+</section><!-- /#gaming -->
+

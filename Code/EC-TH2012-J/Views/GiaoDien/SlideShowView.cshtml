@@ -1,0 +1,20 @@
+﻿@model IQueryable<EC_TH2012_J.Models.KhuyenMai>
+
+
+
+
+<div id="hero">
+    <div id="owl-main" class="owl-carousel height-lg owl-inner-nav owl-ui-lg">
+
+        
+
+                    @foreach (var item in Model)
+        {
+            <div class="item" style="background-image: url('@Url.Content("~/images/khuyenmai/")@item.AnhCT'); cursor:pointer" onclick="window.location = '@Url.Action("KhuyenMaiPost","KhuyenMai")?id=' + @item.MaKM;">
+                <div class="container-fluid">
+                </div><!-- /.container-fluid -->
+            </div><!-- /.item -->
+    }
+
+    </div><!-- /.owl-carousel -->
+</div>

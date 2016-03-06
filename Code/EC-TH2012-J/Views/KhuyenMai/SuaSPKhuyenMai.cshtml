@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Sản phẩm của chương trình khuyến mại";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Danh sách sản phẩm chưa thêm vào khuyến mại</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                <div class="form-inline" style="text-align: right; padding: 10px">
+
+                    <div class="input-group">
+                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP, String.Empty, new { @class = "form-control", id = "maloaisearch", onchange = "timkiemDSSanPham(\'"+ViewBag.makm+"\')" })
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="inputIcon" type="text" class="form-control" placeholder="Nhập tên sản phẩm" oninput="timkiemDSSanPham('@ViewBag.makm');">
+                    </div>
+                    <div class="input-group">
+                        <a class="btn btn-info" href='javascript:multibleadd("@Url.Action("Multible", "KhuyenMai")")'>
+                            <i class="glyphicon glyphicon-plus icon-white"></i>
+                            Thêm vào danh sách khuyến mại
+                        </a>
+                    </div>
+                </div>
+                <div class="Ajax-Table">
+                    @Html.Action("DSSanPham", "KhuyenMai")
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Danh sách sản phẩm khuyến mãi</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                <div class="form-inline" style="text-align: right; padding: 10px">
+
+                    <div class="input-group">
+                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP, String.Empty, new { @class = "form-control", id = "maloaisearch1", onchange = "timkiemDSSanPhamKhuyenMai(\'"+@ViewBag.makm+"\')" })
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="inputIcon1" type="text" class="form-control" placeholder="Nhập tên sản phẩm" oninput="timkiemDSSanPhamKhuyenMai('@ViewBag.makm')">
+                    </div>
+                    <div class="input-group">
+                        <a class="btn btn-danger" href='javascript:multibledel("@Url.Action("Multible", "KhuyenMai")")'>
+                            <i class="glyphicon glyphicon-trash icon-white"></i>
+                            Xóa khỏi danh sách
+                        </a>
+                    </div>
+                </div>
+                <div class="Ajax-Table-1">
+                    @Html.Action("DSSanPhamKhuyenMai", "KhuyenMai")
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

@@ -1,0 +1,25 @@
+﻿@using EC_TH2012_J.Models
+@model IQueryable<SanPham>
+<section id="recently-reviewd" class="wow fadeInUp">
+    <div class="container">
+        <div class="carousel-holder hover">
+
+            <div class="title-nav">
+                <h2 class="h1">Sản Phẩm Liên Quan</h2>
+                <div class="nav-holder">
+                    <a href="#prev" data-target="#owl-recently-viewed" class="slider-prev btn-prev fa fa-angle-left"></a>
+                    <a href="#next" data-target="#owl-recently-viewed" class="slider-next btn-next fa fa-angle-right"></a>
+                </div>
+            </div><!-- /.title-nav -->
+            <div id="owl-recently-viewed" class="owl-carousel product-grid-holder">
+            @foreach (var item in Model)
+            {
+                <div class="no-margin carousel-item product-item-holder size-small hover">
+                 @Html.Partial("_ProductGridShowPartal", item)
+                </div>
+            }
+               <!-- /.product-item-holder -->
+            </div><!-- /#recently-carousel -->
+        </div><!-- /.carousel-holder -->
+    </div><!-- /.container -->
+</section><!-- /#recently-reviewd -->

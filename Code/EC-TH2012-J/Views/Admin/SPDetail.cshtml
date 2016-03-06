@@ -1,0 +1,67 @@
+﻿@model EC_TH2012_J.Models.SanPham
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="closeDialog();">×</button>
+                <h3>Chi tiết về @Model.TenSP </h3>
+            </div>
+            <div class="modal-body">
+                <table class="table-hover table-bordered">
+                    <tr>
+                        <th>Thuộc tính</th>
+                        <th>Giá Trị</th>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model=>model.TenSP)</td>
+                        <td>@Model.TenSP</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.LoaiSP)</td>
+                        <td>@Model.LoaiSP1.TenLoai</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.HangSX)</td>
+                        <td>@Model.HangSanXuat.TenHang</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.SoLuotXemSP)</td>
+                        <td>@Model.SoLuotXemSP</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.XuatXu)</td>
+                        <td>@Model.XuatXu</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.GiaTien)</td>
+                        <td>@Model.GiaTien</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.GiaGoc)</td>
+                        <td>@Model.GiaGoc</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.SoLuong)</td>
+                        <td>@Model.SoLuong</td>
+                    </tr>
+
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.isnew)</td>
+                        <td>@Model.isnew</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(model => model.ishot)</td>
+                        <td>@Model.ishot</td>
+                    </tr>
+                </table>
+            </div>
+            @*<div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+            </div>*@
+        </div>
+    </div>
+</div>
+

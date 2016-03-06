@@ -1,0 +1,91 @@
+﻿@model EC_TH2012_J.Models.Donhangtongquan
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+
+<section id="checkout-page">
+    <div class="container">
+        <div class="col-xs-12 no-margin">
+      
+            <!--Order-->
+        @Html.Action("CartOrder", "Xuligiohang")
+
+        @using (Html.BeginForm("Checkout", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            <h2 class="border h1">Thông tin khách hàng :</h2>
+            <div class="form-group">
+                @Html.Label("Người mua :", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.buyer, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(m => m.buyer)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Người nhận :", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.seller, new { @class = "form-control", required = "required", placeholder = @Model.buyer })
+                    @Html.ValidationMessageFor(m => m.seller)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Điện thoại :", new { type = "number", @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.phoneNumber, new { @type = "number", @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(m => m.phoneNumber)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Địa chỉ :", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.address, new { @class = "form-control", required = "required" })
+                    @Html.ValidationMessageFor(m => m.address)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Ghi chú :", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.Note, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Note)
+                </div>
+            </div>
+            <section id="shipping-address">
+                <h2 class="border h1">shipping address</h2>
+                <div class="row field-row">
+                    <div class="col-xs-12">
+                        <input class="le-checkbox big" type="checkbox" />
+                        <a class="simple-link bold" href="#">ship to different address?</a>
+                    </div>
+                </div><!-- /.field-row -->
+            </section><!-- /#shipping-address -->
+             
+
+            <div id="payment-method-options">
+                    <div class="payment-method-option">
+                        <input class="le-radio" type="radio" name="group2" value="Direct">
+                        <div class="radio-label bold ">
+                            Direct Bank Transfer<br>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce rutrum tempus elit, vestibulum vestibulum erat ornare id.</p>
+                        </div>
+                    </div><!-- /.payment-method-option -->
+
+                    <div class="payment-method-option">
+                        <input class="le-radio" type="radio" name="group2" value="cheque">
+                        <div class="radio-label bold ">cheque payment</div>
+                    </div><!-- /.payment-method-option -->
+
+                    <div class="payment-method-option">
+                        <input class="le-radio" type="radio" name="group2" value="paypal">
+                        <div class="radio-label bold ">paypal system</div>
+                    </div><!-- /.payment-method-option -->
+            </div><!-- /#payment-method-options -->
+
+            <div class="place-order-button">
+                <input type="submit" class="le-button big" value="Đặt hàng" />
+            </div><!-- /.place-order-button -->
+        }
+                  
+        </div><!-- /.col -->
+    </div><!-- /.container -->
+</section><!-- /#checkout-page -->
+

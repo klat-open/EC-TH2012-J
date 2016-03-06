@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNet.Identity
+@model EC_TH2012_J.Models.BinhLuan
+
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="closeDialog();">×</button>
+                <h3> Trả lời bình luận </h3>
+            </div>
+            <div class="modal-body">
+                @using (Ajax.BeginForm("AddRepl", "Comment", null, new AjaxOptions { UpdateTargetId = "Ajax-Table", HttpMethod = "POST" }, new { @id = "themtraloiform", @class = "contact-form" }))
+                {
+                    <div class="form-horizontal">
+                        <div class="alert alert-info" style="display:none">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary()
+                            <span id="kiemtratrung"></span>
+                        </div>
+                        @Html.HiddenFor(model => model.MaSP)
+                        @Html.HiddenFor(model => model.Parent)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NoiDung, new { @class = "control-label col-md-2" })
+                            <div class="col-md-7">
+                                @Html.TextAreaFor(model => model.NoiDung, new { @class = "form-control", rows = "3" })
+                                @Html.ValidationMessageFor(model => model.NoiDung)
+                                <span id="loaiisok"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" class="btn btn-info" value="Trả lời" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            @*<div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+                </div>*@
+        </div>
+    </div>
+</div>

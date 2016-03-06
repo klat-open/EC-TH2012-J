@@ -1,0 +1,29 @@
+﻿@using EC_TH2012_J.Models;
+@using Microsoft.AspNet.Identity;
+@{
+    ViewBag.Title = "Chỉnh sửa thông tin cá nhân";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+<main id="authentication" class="inner-bottom-md">
+    <div class="container">
+        <p class="text-success">@ViewBag.StatusMessage</p>
+        <div class="row">
+            <div class="col-md-12">
+                @if (ViewBag.HasLocalPassword)
+                {
+                    @Html.Partial("_ChangePasswordPartial")
+                }
+                else
+                {
+                    @Html.Partial("_SetPasswordPartial")
+                }
+
+                <section id="externalLogins">
+                    @Html.Action("RemoveAccountList")
+                    <h4>Đăng nhập bằng tài khoản khác</h4>
+                    @Html.Partial("_ExternalLoginsListPartial", new { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
+                </section>
+            </div>
+        </div>
+    </div>
+</main>

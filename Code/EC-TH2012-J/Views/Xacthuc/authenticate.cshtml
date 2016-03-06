@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "authenticate";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+
+<div class="course_demo oauth">
+    <h4>Hi : @ViewBag.name</h4>
+    <div>
+        <div class="body-oauth">
+            Ứng dụng này muốn yêu cầu quyền xác thực trang này.
+            Bao gồm các quyền được truy cập dữ liệu cho phép của ứng dụng.
+        </div>
+        <hr />
+        <div class="footer-oauth">
+            @using (Html.BeginForm("authenticate", "Xacthuc", FormMethod.Post))
+            {
+                <input type="submit" name="btn" value="Đồng ý" />
+                <input type="submit" name="btn" value="Không đồng ý" />
+            }
+        </div>
+    </div>
+</div>

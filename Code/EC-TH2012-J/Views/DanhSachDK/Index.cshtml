@@ -1,0 +1,192 @@
+﻿@model EC_TH2012_J.Models.HopDongNCC
+@{
+    ViewBag.Title = "Danh sách đăng ký cung cấp sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script>
+    function KyHopDong(masp, mancc, maspcm) {
+        $('#nhacungcap').val(mancc);
+        $('#sanpham').val(masp);
+        $('#maspcm').val(maspcm);
+        $('html, body').animate({
+            scrollTop: $("#nhacungcap").offset().top
+        }, 500);
+    }
+
+    function updatespcm() {
+        var value = $('#maspcm').val();
+        $.ajax({
+            url: '@Url.Action("KyHopDong","DanhSachDK")',
+            type: 'POST',
+            data: { id: value },
+            success: function (result) {
+                $('.Ajax-Table').html(result);
+                alert("Ky hop dong xong")
+            },
+        });
+    }
+</script>
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                <div class="form-inline" style="text-align: right; padding: 10px">
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="tenncc" type="text" class="form-control" placeholder="Tên nhà cung cấp" oninput="timkiemdsdk()">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="tensp" type="text" class="form-control" placeholder="Tên sản phẩm" oninput="timkiemdsdk()">
+                    </div>
+                    <div class="input-group">
+                        <a class="btn btn-danger" href='javascript:multibledel("@Url.Action("MultibleDel", "DanhSachDK")")'>
+                            <i class="glyphicon glyphicon-trash icon-white"></i>
+                            Xóa các đăng ký đã chọn
+                        </a>
+                    </div>
+
+                </div>
+                <div class="Ajax-Table">
+                    @Html.Action("TimDS", "DanhSachDK")
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Ký hợp đồng</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <input type="hidden" id="maspcm" />
+                @using (Ajax.BeginForm("ThemHopDong", "HopDong", null, new AjaxOptions { HttpMethod = "POST", OnSuccess = "updatespcm" }, new { autocomplete = "off", enctype = "multipart/form-data" }))
+                {
+
+                    <div class="form-horizontal">
+                        <div class="alert alert-info" style="display:none">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary()
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaNCC, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.MaNCC, new { @class = "form-control", id = "nhacungcap", required = "required", @readonly="readonly" })
+                                @Html.ValidationMessageFor(model => model.MaNCC)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NgayKy, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                <input class="form-control text-box single-line valid" data-val="true" data-val-date="The field NgayKy must be a date." id="NgayKy" name="NgayKy" type="date" value="" aria-invalid="false" aria-describedby="NgayKy-error">
+                                @Html.ValidationMessageFor(model => model.NgayKy)
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ThoiHanHD, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.ThoiHanHD, new { htmlAttributes = new { @class = "form-control", required = "required", @type = "number" } })
+                                @Html.ValidationMessageFor(model => model.ThoiHanHD)
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MaSP, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(model => model.MaSP, new { @class = "form-control", id = "sanpham", required = "required", @readonly = "readonly" })
+                                @Html.ValidationMessageFor(model => model.MaSP)
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SLToiThieu, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.SLToiThieu, new { htmlAttributes = new { @class = "form-control", required = "required", @type = "number" } })
+                                @Html.ValidationMessageFor(model => model.SLToiThieu)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SLCungCap, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.SLCungCap, new { htmlAttributes = new { @class = "form-control", required = "required", @type = "number" } })
+                                @Html.ValidationMessageFor(model => model.SLCungCap)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DonGia, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.DonGia, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.DonGia)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SoNgayGiao, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.SoNgayGiao, new { htmlAttributes = new { @class = "form-control", required = "required", @type = "number" } })
+                                @Html.ValidationMessageFor(model => model.SoNgayGiao)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.IsBuy, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                @Html.DropDownList("IsBuy", new SelectList(new List<object>
+                            {
+                                new { value = true , text = "Hợp đồng mua"  },
+                                new { value = false , text = "Hợp đồng bán" },
+                            }, "value", "text", true), new { @class = "form-control", @readonly = "readonly", value = "true" })
+                                @Html.ValidationMessageFor(model => model.IsBuy)
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Thêm mới" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

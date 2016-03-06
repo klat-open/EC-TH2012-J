@@ -1,0 +1,72 @@
+﻿@model EC_TH2012_J.Models.KhuyenMai
+@{
+    ViewBag.Title = "KhuyenMaiPostView";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+
+<section id="blog-single">
+    <div class="container">
+
+        <!-- ========================================= CONTENT ========================================= -->
+
+        <div class="posts col-md-9">
+
+            <div class="post-entry">
+
+                <div class="clearfix">
+                    <!-- ========================================== SECTION – HERO ========================================= -->
+
+                    <div id="hero">
+                        <img src="@Url.Content("~/images/khuyenmai/")@Model.AnhCT" alt="">
+                        @*<div id="owl-main" class="owl-carousel owl-carousel-blog owl-inner-nav owl-ui-sm">
+
+                            <div class="item">
+                                <img src="assets/images/blog-post/slider-1.jpg" alt="">
+                            </div><!-- /.item -->
+
+                            <div class="item">
+                                <img src="assets/images/blog-post/slider-2.jpg" alt="">
+                            </div><!-- /.item -->
+
+                            <div class="item">
+                                <img src="assets/images/blog-post/slider-1.jpg" alt="">
+                            </div><!-- /.item -->
+
+                        </div><!-- /.owl-carousel -->*@
+                    </div>
+                <hr />
+
+                    <!-- ========================================= SECTION – HERO : END ========================================= -->
+                </div><!-- /.clearfix -->
+
+                <div class="post-content">
+                    <h2 class="post-title">@Model.TenCT</h2>
+                    <ul class="meta">
+                        <li class="red-text">Bắt đầu : @Model.NgayBatDau</li>
+                        <li class="red-text">Kết thúc : @Model.NgayKetThuc</li>
+                        
+                    </ul><!-- /.meta -->
+                    @Html.Raw(Model.NoiDung)
+                </div><!-- /.post-content -->
+            </div><!-- /.post-entry -->
+
+
+        </div><!-- /.posts -->
+        <!-- ========================================= CONTENT :END ========================================= -->
+        <!-- ========================================= SIDEBAR ========================================= -->
+        <div class="col-md-3">
+            <aside class="sidebar blog-sidebar">
+
+                
+                <!-- ========================================= RECENT POST ========================================= -->
+                @Html.Action("KhuyenMaiPost", "SideBar")
+                <!-- ========================================= RECENT POST : END ========================================= -->
+                @Html.Action("GiamGiaNhieu", "SideBar")
+            </aside><!-- /.sidebar .blog-sidebar -->
+        </div><!-- /.col -->
+        <!-- ========================================= SIDEBAR : END ========================================= -->
+        <!-- ========================================= CONTENT ========================================= -->
+
+    </div>
+</section>	
+

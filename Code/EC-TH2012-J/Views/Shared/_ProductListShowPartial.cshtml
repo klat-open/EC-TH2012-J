@@ -1,0 +1,53 @@
+﻿@model EC_TH2012_J.Models.SanPham
+
+<div class="product-item product-item-holder">
+    @if (Model.GiaTien < Model.GiaGoc)
+    {
+        <div class="ribbon green"><span>Giảm</span></div>
+    }
+    @if (Model.isnew == true)
+    {
+        <div class="ribbon blue"><span>Mới nhập</span></div>
+    }
+    @if (Model.ishot == true)
+    {
+        <div class="ribbon red"><span>Hot</span></div>
+    }
+
+    <div class="row">
+        <div class="no-margin col-xs-12 col-sm-4 image-holder">
+            <div class="image">
+                <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" />
+            </div>
+        </div><!-- /.image-holder -->
+        <div class="no-margin col-xs-12 col-sm-5 body-holder">
+            <div class="body">
+                @*<div class="label-discount green">-50% sale</div>*@
+                <div class="label-discount clear"></div>
+                <div class="title">
+                    <a href="@Url.Action("Index", "SanPham", new { id = @Model.MaSP })">@Model.TenSP</a>
+                </div>
+                <div class="brand">@Model.HangSanXuat.TenHang</div>
+                <div class="excerpt">
+                    <p>@Model.MoTa</p>
+                </div>
+                <div class="addto-compare">
+                    <a class="btn-add-to-compare" href="#">So sánh</a>
+                </div>
+            </div>
+        </div><!-- /.body-holder -->
+        <div class="no-margin col-xs-12 col-sm-3 price-area">
+            <div class="right-clmn">
+                <div class="price-current">@string.Format("{0:0,0}", Model.GiaTien) VNĐ</div>
+                
+                @if (Model.GiaTien < Model.GiaGoc)
+                {  <div class="price-prev">@string.Format("{0:0,0}", Model.GiaGoc)  VNĐ</div> }
+                <div class="availability"><label>Tình trạng:</label> @if (@Model.SoLuong > 0) {<span class="available"> Còn hàng </span> }
+                                                                     else
+                                                                     {<span class="not-available">Hết hàng</span> } </div>
+                <a class="le-button" href="#">Mua</a>
+                <a class="btn-add-to-wishlist" href="#">Yêu thích</a>
+            </div>
+        </div><!-- /.price-area -->
+    </div><!-- /.row -->
+</div><!-- /.product-item -->

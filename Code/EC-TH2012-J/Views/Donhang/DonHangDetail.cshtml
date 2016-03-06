@@ -1,0 +1,35 @@
+﻿@model IQueryable<EC_TH2012_J.Models.ChiTietDonHang>
+
+<div class="modal fade in" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="closeDialog();">×</button>
+                <h3> Chi tiết đơn hàng #@Model.First().MaDH </h3>
+            </div>
+            <div class="modal-body">
+                <table class="table-hover table-bordered">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.First().SanPham.TenSP)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().SoLuong)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().ThanhTien)</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.SanPham.TenSP</td>
+                            <td>@item.SoLuong</td>
+                            <td>@string.Format("{0:0,0}", @item.ThanhTien) </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            @*<div class="modal-footer">
+                    <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+                </div>*@
+        </div>
+    </div>
+</div>

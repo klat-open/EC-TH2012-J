@@ -1,0 +1,19 @@
+﻿@model EC_TH2012_J.Models.SanPham
+
+<li>
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 no-margin">
+            <a href="#" class="thumb-holder">
+                <img alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" width="73" height="73" style="padding:5px" />
+            </a>
+        </div>
+        <div class="col-xs-8 col-sm-8 no-margin">
+            <a href="#">@Model.TenSP </a>
+            <div class="price">
+                @if (Model.GiaTien < Model.GiaGoc)
+                {  <div class="price-prev">@string.Format("{0:0,0}", Model.GiaGoc)  VNĐ</div> }
+                <div class="price-current">@string.Format("{0:0,0}", Model.GiaTien) VNĐ</div>
+            </div>
+        </div>
+    </div>
+</li>

@@ -1,0 +1,152 @@
+﻿@model EC_TH2012_J.Models.Hopdong
+@{
+    ViewBag.Title = "Xem Xác Nhận Giao Hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Datetimepicker/jquery-ui.css" rel="stylesheet" />
+<script src="~/Datetimepicker/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".news_date").datepicker();
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#mahd").change(function () {
+            $.ajax({
+                url:"/AdminB2B/GetMaspFromMahd",
+                type:"GET",
+                data:{ MaHD:$("#mahd").val()},
+                success: function (result)
+                {
+                    $("#masp").val(result);
+                }
+            });
+        });
+    });
+    
+    function ShowBasic()
+    {
+        $.ajax({
+            url: "/AdminB2B/BasicParitial",
+            type: "GET",
+            success: function (result) {
+                $(".basicOauth").html("");
+                $(".basic").html(result);
+            }
+        });
+        
+    }
+    function ShowOauth()
+    {
+        $.ajax({
+            url: "/AdminB2B/BasicOauthParitial",
+            type: "GET",
+            success: function (result) {
+                $(".basic").html("");
+                $(".basicOauth").html(result);
+            }
+        });
+    }
+</script>
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Nhập thông tin</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Nhập thông tin xác nhận</h5>
+                        <hr />
+                        @using (Html.BeginForm("XemXacNhanGiaoHang", "AdminB2B", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            <div class="alert alert-info">
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary()
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" value="@ViewBag.doitac" name="doitac" />
+                                @Html.Label("Mã hợp đồng", new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                     @Html.DropDownListFor(m => m.order_id, (SelectList)ViewBag.HD, new { @class = "form-control", required = "required", @id ="mahd"})
+                                </div>
+                             </div>
+                            <div class="form-group">
+                                @Html.Label("Mã sản phẩm", new { @class = "col-md-4 control-label" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(m => m.product_id, new { @class = "form-control", required = "required",@id ="masp" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Ngày nhận", new { @class = "col-md-4 control-label" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(m => m.product_date, new { @class = "form-control news_date", required = "required", id = "news_date" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("số lượng sản phẩm", new { @class = "col-md-4 control-label" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(m => m.product_quantity, new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(m => m.product_quantity)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Supplier key", new { @class = "col-md-4 control-label" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(m => m.supplier_key, new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(m => m.supplier_key)
+                                </div>
+                            </div>
+                            <hr />
+                            //Chọn phương thức xác thực
+                            <h5>Chọn phương thức xác thực</h5>
+                            <div class="radio">
+                                <label><input type="radio" name="optradio" onclick="ShowBasic()">Basic authentication</label>
+                            </div>
+                            <div class="basic">
+                                <div class="form-group">
+                                    @Html.Label("Username", new { @class = "col-md-4 control-label" })
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="username" id="username" required />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Password", new { @class = "col-md-4 control-label" })
+                                    <div class="col-md-8">
+                                        <input type="password" class="form-control" name="password" id="password" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="optradio" onclick="ShowOauth()">Basic oauth</label>
+                            </div>
+                            <div class="basicOauth">
+
+                             </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn btn-default" value="Xác nhận đặt hàng" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+@Html.Action("GetAccesstoken", "AdminB2B", new { redirectUrl = "/AdminB2B/XemXacNhanGiaoHang?doiTacID=" + ViewBag.doitac });
+
+

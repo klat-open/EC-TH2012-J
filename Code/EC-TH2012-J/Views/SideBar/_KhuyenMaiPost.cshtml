@@ -1,0 +1,24 @@
+﻿@model IQueryable<EC_TH2012_J.Models.KhuyenMai>
+<div class="widget">
+    <h1>Tin khuyến mãi khác</h1>
+    <div class="body">
+        <ul class="recent-post-list">
+        @foreach(var item in Model)
+        {
+            <li class="sidebar-recent-post-item">
+                <div class="media">
+                    <a href="@Url.Action("KhuyenMaiPost", "KhuyenMai", new { id = item.MaKM })" class="thumb-holder pull-left">
+                        <img alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/khuyenmai/kmicon.gif")" />
+                    </a>
+                    <div class="media-body">
+                        <h2><a href="@Url.Action("KhuyenMaiPost", "KhuyenMai", new { id = item.MaKM })" class="red-text">@item.TenCT </a></h2>                        
+                    </div>
+                </div>
+            </li><!-- /.sidebar-recent-post-item -->
+        }
+            
+
+          
+        </ul><!-- /.recent-post-list -->
+    </div><!-- /.body -->
+</div><!-- /.widget -->

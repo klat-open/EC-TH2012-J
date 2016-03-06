@@ -1,0 +1,49 @@
+﻿@model EC_TH2012_J.Models.Giohang
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    <div class="basket-item-count">
+        <span class="count">@Model.Tinhtongsoluongtronggio()</span>
+        <img src="@Url.Content("~/template/assets/images/icon-cart.png")" alt="" />
+    </div>
+    <div class="total-price-basket">
+        <span class="lbl">giỏ hàng:</span>
+        <span class="total-price">
+            <span class="value">@string.Format("{0:0,0}", @Model.TinhtongtienCart())  </span><span class="sign">VNĐ</span>
+        </span>
+    </div>
+</a>
+<ul class="dropdown-menu">
+    @for (int i = 0; i < @Model.getGiohang().Count; i++)
+    {
+        <li>
+            <div class="basket-item">
+                <div class="row">
+                    <div class="col-xs-4 col-sm-4 no-margin text-center">
+                        <div class="thumb">
+                            <img alt="" src="@Url.Content("~/images/products/"+ @Model.getGiohang()[i].sanPham.AnhDaiDien)" />
+                        </div>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 no-margin">
+                        <div class="title">@Model.getGiohang()[i].sanPham.TenSP</div>
+                        <div class="price">@string.Format("{0:0,0}",@Model.getGiohang()[i].Thanhtien) VNĐ</div>
+                    </div>
+                </div>
+                
+            </div>
+        </li>
+    }
+
+
+    <li class="checkout">
+        <div class="basket-item">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <a href="@Url.Action("Cart","Home")" class="le-button inverse">Xem</a>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <a href="@Url.Action("Checkout","Home")" class="le-button">Mua hàng</a>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+

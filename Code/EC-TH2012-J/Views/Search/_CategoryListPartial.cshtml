@@ -1,0 +1,6 @@
+﻿@model List<EC_TH2012_J.Models.LoaiSP>
+
+@foreach (var item in Model)
+{
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("AdvancedSearchView", "Search", new { loai = item.MaLoai })">@item.TenLoai</a></li>
+}

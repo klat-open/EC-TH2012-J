@@ -1,0 +1,76 @@
+﻿@using EC_TH2012_J.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<HopDongNCC>
+
+
+<table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+    <thead>
+        <tr>
+            <th>
+                <input type="checkbox" onclick="toggle(this)" />
+            </th>
+            <th>@Html.DisplayNameFor(model => model.First().MaHD)</th>
+            <th>Đối tác</th>
+            <th>Ngày xác nhận</th>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Giao hàng</th>
+            <th>Thanh toán</th>
+            <th>Loại hợp đồng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" name="lstdel" value="@item.MaHD" />
+                </td>
+                <td class="center">@item.MaHD</td>
+
+                <td class="center">@item.NhaCungCap.TenNCC</td>
+
+
+                <td class="center">@item.Dateaccept</td>
+                <td class="center">@item.SanPham.TenSP</td>
+                <td class="center">@item.SLCungCap</td>
+                <td class="center">@item.DonGia</td>
+                <td class="center">
+                    @if (item.TinhTrang == true)
+                    { <span class="label label-info">Đã giao</span> }
+                    else
+                    {<span class="label label-danger">Chưa giao</span>}
+                </td>
+                <td class="center">
+                    @if (item.TTThanhToan == true)
+                    { <span class="label label-info">Đã thanh toán</span> }
+                    else
+                    {<span class="label label-danger">Chưa thanh toán</span>}
+                </td>
+                <td class="center">
+                    @if (item.IsBuy == true)
+                    { <span class="label label-info">Mua</span> }
+                    else
+                    {<span class="label label-danger">Bán</span>}
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="pagination-holder">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 text-left">
+            <div id="nav_grid">
+                @Html.PagedListPager(Model, page => Url.Action("TTGiaoHang", "HopDong", new { key = @ViewBag.key, loaihd = @ViewBag.loaihd, tensp = @ViewBag.tensp, tt = @ViewBag.tt, page = page }))
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="result-counter">
+                Có tât cả <span>@Model.TotalItemCount</span> dòng
+            </div>
+        </div>
+    </div><!-- /.row -->
+</div><!-- /.pagination-holder -->

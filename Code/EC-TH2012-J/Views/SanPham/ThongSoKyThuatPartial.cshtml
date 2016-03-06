@@ -1,0 +1,10 @@
+﻿@model IQueryable<EC_TH2012_J.Models.ThongSoKyThuat>
+<ul class="tabled-data">
+    @foreach (var item in Model)
+    {
+        <li>
+            <label>@item.ThuocTinh</label>
+            <div class="value">@item.GiaTri</div>
+        </li>
+    }
+</ul><!-- /.tabled-data -->

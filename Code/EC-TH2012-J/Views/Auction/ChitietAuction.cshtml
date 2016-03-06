@@ -1,0 +1,47 @@
+﻿@model EC_TH2012_J.Models.Sanphamcanmua
+<div class="product-item">
+    @*<div class="ribbon red"><span>sale</span></div>*@
+    @*@if (Model.isnew == true)
+    {
+        <div class="ribbon blue"><span>Mới nhập</span></div>
+    }
+    @if (Model.ishot == true)
+    {
+        <div class="ribbon red"><span>Hot</span></div>
+    }*@
+    @*<div class="ribbon blue"><span>new!</span></div>*@
+    @*<div class="ribbon green"><span>bestseller</span></div>*@
+        <div class="image">
+            <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model.SanPham.AnhDaiDien" />
+        </div>
+        <div class="body">
+            <div class="label-discount clear"></div>
+            @*<div class="label-discount green">Giảm 50%</div>*@
+            <div class="title">
+                <a href="@Url.Action("ChitietSanphamAuction", "Auction", new { spcm = Model.ID })">@Model.SanPham.TenSP</a>
+            </div>
+            <div class="brand">@Model.SanPham.HangSX</div>
+            <div class="countdowns">
+                <div data-countdown="@Model.Ngayketthuc"></div>
+            </div>
+        </div>
+        <div class="soluong">
+           Số lượng cần :  @Model.Soluong       
+        </div>
+        <div class="hover-area">
+            <div class="add-cart-button">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.Action("ChitietSanphamAuction", "Auction", new { spcm = Model.ID })" class="le-button">Xem Chi Tiết</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Authentication","Account")" class="le-button">Xem Chi Tiết</a>
+                }
+            </div>
+            <div class="wish-compare">
+                <a class="btn-add-to-wishlist" href="#">Yêu thích</a>
+                <a class="btn-add-to-compare" href="#">So sánh</a>
+            </div>
+        </div>
+    </div><!-- /.product-item -->

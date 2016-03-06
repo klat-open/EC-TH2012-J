@@ -1,0 +1,44 @@
+﻿<script type="text/javascript">
+    function saveComsumer()
+    {
+        var url = "/AdminB2B/Saveconsumer_key";
+        consum = $("#consumer_key").val();
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: { consumer_key: consum },
+            success: function (result) {
+            }
+        });
+    }
+</script>
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Get Token</h4>
+            </div>
+            <form action="@ViewBag.action" method="post" class="form-horizontal" id="gettoken">
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.Label("consumer key", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="consumer_key" id="consumer_key" onblur="saveComsumer()" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("callback", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" name="callback" required />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" onsubmit="Getconsumer_key()">GetToken</button>
+                </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,256 @@
+﻿/*body {
+}
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}*/
+.checkbox1{
+    display:block;
+    position:relative;
+}
+.content_login
+{
+    background-color:white;
+    padding:20px 0 20px 0;
+}
+
+/*Phần form xác thực*/
+.boxcontent{
+    padding:0;
+    margin:0;
+}
+.body-oauth{
+    font-size:16px;
+    font-weight:bold;
+    font-style:italic;
+    margin-bottom:20px;
+}
+.oauth h4{
+    color:blue;
+    margin-bottom:20px;
+}
+.oauth{
+    box-shadow:5px 5px 5px 5px #808080;
+    width:90%;
+    margin:10px auto 20px auto;
+    padding:10px;
+    
+}
+.footer-oauth input[type=submit]{
+    background-color:#fff;
+    padding: 6px 12px;
+    border-radius:5px;
+    border: 1px solid transparent;
+    border: 1px solid #ccc;
+}
+.footer-oauth input[type=submit]:hover{
+    background-color:#b2a9a9;
+}
+.oauth td,.oauth th{
+    padding-left:5px;
+}
+.oauth #MSSV{
+    width:20%;
+}
+.oauth #hovaten{
+    width:30%;
+}
+.oauth #link{
+    width:60%;
+}
+/*Gio hang*/
+.mycart{
+    text-shadow: none;
+    background: #FFF none repeat scroll 0% 0%;
+    padding: 0px;
+    margin: 0px;
+}
+.mycart h3 {
+    text-transform: uppercase;
+    color: #DD2A01;
+    padding: 12px 0px 7px;
+    font: 700 16px tinos;
+    text-align: center;
+    margin: 0px;
+}
+.simpleCart_items {
+    border-top: 1px solid #DCDCDC;
+    font-size: 12px;
+    min-height: 90px;
+    padding: 6px 0px 6px 2px;
+    overflow: hidden;
+}
+.itemname {
+    width: 240px;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    font: 500 14px "Roboto Condensed",Arial,sans-serif;
+    color: #444;
+}
+
+.mycart table {
+    margin: 0px 0px 38px;
+}
+div.clear {
+    clear: both;
+}
+.mycart table td {
+    font-weight: bold;
+}
+.mycart table td.numb {
+    color: #FCFF03;
+}
+.mycart .button_checkout {
+    border-top: 1px dashed #01438D;
+    padding: 3px 0px 0px;
+}
+.mycart a.simpleCart_empty {
+    display: inline-block;
+    color: red;
+    background: #FFFC04 none repeat scroll 0% 0%;
+    border-radius: 10px;
+    text-shadow: none;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 6px 16px 5px;
+    margin: 7px 8px 0px 0px;
+    float: right;
+    font-weight: bold;
+}
+.mycart a:hover{
+    color:blue;
+}
+.simpleCart_items img {
+    height: 80px;
+    width: 80px;
+    float: left;
+}
+.itemremove a {
+    font: 500 14px tinos;
+    color: #01A809;
+    position: absolute;
+    top: 43px;
+    right: 10px;
+}
+
+/*menu*/
+.ul_menu{
+    margin-bottom: 0px;
+  padding: 0;
+  width: 100%;
+  height:100px;
+  list-style: none;
+  display: inline-block;
+  position: relative;
+  font-size: 15px;
+}
+/*change pass*/
+.form-control{
+    width:70%;
+}
+.btn{
+    background-color:blueviolet;
+}
+/*Phieu dat hang*/
+.itemphieu{
+    background: #FCFCFC none repeat scroll 0% 0%;
+    float: left;
+    position: relative;
+    padding: 6px;
+    width: 95%;
+    margin: 4px 4px 4px 20px;
+    border: 1px solid #CCC;
+    border-radius: 0px;
+}
+.itemnamemua{
+    width: 450px;
+    position: relative;
+    top: 8px;
+    left:5px;
+    font: 500 14px "Roboto Condensed",Arial,sans-serif;
+    color: black;
+    margin-bottom:10px;
+}
+.itemthumbphieu img{
+    height: 100px;
+    width: 80px;
+    float: left;
+}
+.itemnamghichu{
+    width: 100%;
+    position: relative;
+    top: 8px;
+    right: 5px;
+    left:5px;
+    font: 500 14px "Roboto Condensed",Arial,sans-serif;
+    color: black;
+    margin-bottom:10px;
+}
+.subitem{
+    float:right;
+}
+.itemnamemua i{
+    color:blue;
+}
+#itemtrangthai{
+    width: 450px;
+    position: relative;
+    top: 8px;
+    left:5px;
+    font: 500 14px "Roboto Condensed",Arial,sans-serif;
+    color: black;
+    margin-bottom:10px;
+}
+#itemtrangthai i{
+    color:red;
+    font-size:15px;
+}
+/*image*/
+.lazy{
+    width:70%;
+    height:70%;
+}
+/*Auction*/
+.countdowns{
+    text-align: center;
+    color: red;
+}
+.soluong{
+    text-align:center;
+    color:blue;
+    font-size:18px;
+}
+.soluongct{
+    color:blue;
+    font-size:24px;
+    margin-bottom:20px;
+}
+.countdownsct{
+    text-align:left;
+    font-size:24px;
+}

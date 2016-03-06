@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c57126e2ff3c464eacedabf40d37e35a" Name="Diagram1" ZoomLevel="88">
+        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="3.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="8.25" PointY="19.75" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="8.25" PointY="2.25" />
+        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="6" PointY="1.625" />
+        <EntityTypeShape EntityType="Model.BinhLuan" Width="1.5" PointX="8.25" PointY="7" />
+        <EntityTypeShape EntityType="Model.ChiTietDonHang" Width="1.5" PointX="5.25" PointY="11.375" />
+        <EntityTypeShape EntityType="Model.DonHangKH" Width="1.5" PointX="3" PointY="19.75" />
+        <EntityTypeShape EntityType="Model.GiaoDien" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.HangSanXuat" Width="1.5" PointX="0.75" PointY="11.5" />
+        <EntityTypeShape EntityType="Model.HopDongNCC" Width="1.5" PointX="10.25" PointY="15" />
+        <EntityTypeShape EntityType="Model.KhuyenMai" Width="1.5" PointX="6" PointY="19.375" />
+        <EntityTypeShape EntityType="Model.Link" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.LoaiSP" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="Model.NhaCungCap" Width="1.5" PointX="0.75" PointY="16" />
+        <EntityTypeShape EntityType="Model.Oauth" Width="1.5" PointX="3" PointY="24" />
+        <EntityTypeShape EntityType="Model.SanPham" Width="1.5" PointX="3" PointY="9.75" />
+        <EntityTypeShape EntityType="Model.SanPhamKhuyenMai" Width="1.5" PointX="8.25" PointY="11.375" />
+        <EntityTypeShape EntityType="Model.ThongSoKyThuat" Width="1.5" PointX="5.25" PointY="29.375" />
+        <EntityTypeShape EntityType="Model.Trackingaction" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model.FK_BinhLuan_AspNetUsers" />
+        <AssociationConnector Association="Model.FK_DonHangKH_AspNetUsers" />
+        <AssociationConnector Association="Model.FK_BinhLuan_SanPham" />
+        <AssociationConnector Association="Model.FK_ChiTietDonHang_DonHangKH" />
+        <AssociationConnector Association="Model.FK_ChiTietDonHang_SanPham" />
+        <AssociationConnector Association="Model.FK_SanPham_HangSanXuat" />
+        <AssociationConnector Association="Model.FK_HopDongNCC_SanPham" />
+        <AssociationConnector Association="Model.FK_Table_NhaCungCap" />
+        <AssociationConnector Association="Model.FK_SanPhamKhuyenMai_KhuyenMai" />
+        <AssociationConnector Association="Model.FK_SanPham_LoaiSP" />
+        <AssociationConnector Association="Model.PK_Oauth_NhaCC" />
+        <AssociationConnector Association="Model.FK_SanPhamKhuyenMai_SanPham" />
+        <AssociationConnector Association="Model.FK_ThongSoKyThuat_SanPham" />
+        <AssociationConnector Association="Model.AspNetUserRoles" />
+        <AssociationConnector Association="Model.FK_NhaCC_Netuser" />
+        <EntityTypeShape EntityType="Model.Sanphamcanmua" Width="1.5" PointX="5.25" PointY="15.25" />
+        <AssociationConnector Association="Model.PK_SPCM_SP" />
+        <EntityTypeShape EntityType="Model.ConfigAPI" Width="1.5" PointX="3" PointY="16.5" />
+        <AssociationConnector Association="Model.FK_Config_NhaCC" />
+        <EntityTypeShape EntityType="Model.DanhsachdangkisanphamNCC" Width="1.5" PointX="7.5" PointY="14.875" />
+        <AssociationConnector Association="Model.FK_DKNCC_NCC" />
+        <AssociationConnector Association="Model.FK_SPCM_DKNCC" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

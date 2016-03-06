@@ -1,0 +1,90 @@
+﻿@*Code auto complete search textbox*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        bindEvent();
+    });
+    function bindEvent() {
+        $("#sanpham").bind('keyup', function () { setTimeout(GetAliasDetails, 0) });
+    }
+    function GetAliasDetails() {
+        var text = $('#sanpham').val();
+        if (text) {
+            $("#divLoader").show();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "@Url.Action("SearchByName", "Search")",
+                data: "{term:'" + text + "'}",
+                dataType: "json",
+                success: function (data) {
+                    $("#divAutoComplete").html('');
+                    $("#divLoader").hide();
+                    if (data != null) {
+                        var html = "<div style=\"border:3px solid #c6c6c6;background-color: #fff;\">";
+                        html += "<table>";
+                        $.each(data, function (i, item) {
+                            html += "<tbody class=\"hoversearch\"  onclick=\"chuyentrang(\'" + item.MaSP + "\')\"><tr>";
+                            html += "<td style=\"padding:5px\" rowspan=\"2\"><img width=\"50\" height=\"50\" src=\"@Url.Content("~/images/products/")" + item.AnhDaiDien + "\" /></td>"
+                            html += "<td style=\"padding:5px\"><span class=\"bold\">" + item.TenSP + "</span></td></tr>";
+                            html += "<tr><td style=\"padding:5px\"><span style=\"color:#2A1051\" class=\"bold\">" + item.GiaTien.toLocaleString() + " VNĐ</span></td></tr>"
+                            html += "</tbody>"
+                        })
+                        html += "</table></div>";
+                        $("#divAutoComplete").html(html).show();
+                    }
+                },
+                error: function (result) {
+                    $("#divLoader").hide();
+                }
+            });
+        }
+        else {
+            close();
+        }
+    }
+
+
+    function close() {
+        $("#divAutoComplete").html("");
+        $("#divAutoComplete").slideUp();
+        $("#divLoader").hide();
+    }
+    function chuyentrang(s) {
+        window.location = '@Url.Action("Index","SanPham")?id=' + s;
+    }
+</script>
+
+<script>
+    function submitsearch()
+    {
+        var text = $('#sanpham').val();
+        window.location = '@Url.Action("AdvancedSearchView", "Search")?term=' + text;
+    }
+</script>
+
+<style>
+    .hoversearch{
+        cursor:pointer;
+        border-bottom:1px dotted #c6c6c6;
+    }
+    .hoversearch:hover{
+        background-color:#e8e8e8;
+    }
+</style>
+<form action="@Url.Action("AdvancedSearchView", "Search")" autocomplete="off">
+    <div class="control-group">
+        <input class="search-field" placeholder="Tìm kiếm sản phẩm" id="sanpham" name="term" />
+        <ul class="categories-filter animate-dropdown">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index", "Category", new { MaLoai = "" })">Tât cả các loại</a>
+                <ul class="dropdown-menu" role="menu">
+                    @Html.Action("CategoryList", "Search")
+                </ul>
+            </li>
+        </ul>
+        <a class="search-button" href='javascript:submitsearch()'></a>
+    </div>
+</form>
+
+<div id="divAutoComplete" style="position:absolute; z-index:100; padding-top: 10px"  >
+</div>

@@ -1,0 +1,74 @@
+﻿@model List<EC_TH2012_J.Models.DonhangKHModel>
+@{
+    ViewBag.Title = "Xem don hang";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+    <script src="~/js/themxoasuaajax.js"></script>
+}
+<div class="row">
+    <div class="mycart">
+        <h3>Danh sách các hóa đơn bạn đã đặt hàng</h3>
+        <div class="simpleCart_items">
+            @for (int i = 0; i < @Model.Count; i++)
+            {
+                <div class="itemphieu">
+                    <div class="col-md-1 itemthumbphieu">
+                        <a href="javascript:;" onclick="ChiTietItem('@Url.Action("Chitietdonhang","Donhang")','@Model[i].donHang.MaDH')"><img src="~/images/cartphieu.jpg" alt="img" title="xem chi tiết" /></a>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="itemnamemua">
+                            <i>Tên người Mua :</i> @Model[i].nguoiMua.HoTen
+                        </div>
+                        <div class="itemnamemua">
+                            <i>Tên người nhan :</i> @Model[i].nguoiNhan
+                        </div>
+                        <div class="itemnamghichu">
+                            <i>Ghi chú :</i> @Model[i].donHang.Ghichu
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="itemnamemua">
+                            Tổng tiền : @Model[i].donHang.Tongtien VND
+                        </div>
+                        <div class="itemnamemua">
+                            Ngày mua : @Model[i].donHang.NgayDatMua
+                        </div>
+                        <div class="itemnamghichu">
+                            Địa chỉ : @Model[i].donHang.Diachi
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        
+                            @if (@Model[i].donHang.TinhTrangDH <= 1)
+                            {
+                                <div id="itemtrangthai">
+                                    <i>Trạng thái : @Model[i].tinhTrangDH .</i>
+                                </div>
+                                <div class="itemnamghichu">
+                                    <a href="javascript:;" onclick="Huydonhang('@Model[i].donHang.MaDH')">Hủy đơn đặt hàng</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="itemtrangthai">
+                                    <i>Trạng thái : @Model[i].tinhTrangDH .</i>
+                                </div>
+                            }
+                        
+                    </div>
+                      
+                </div>
+            }
+
+            <div class="clear"></div>
+
+        </div>
+    </div>
+</div>
+<div id="show-dialog-detail" style="display:none">
+</div>
+
+
+
+
+
+

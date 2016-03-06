@@ -1,0 +1,113 @@
+﻿@model EC_TH2012_J.Models.EditInfoModel
+@{
+    ViewBag.Title = "EditInfo";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+
+
+<main id="authentication" class="inner-bottom-md">
+    <div class="container">
+        <div class="row">
+            <div id="StatupMessage">
+                @if (ViewBag.StatusMessage != null)
+                {
+                    <h5>@ViewBag.StatusMessage</h5>
+                }
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-3" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "le-input", disabled = "disabled", @readonly="readonly" })
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DienThoai, new { @class = "control-label col-md-3" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.DienThoai, new { @class = "le-input" })
+                                @Html.ValidationMessageFor(model => model.DienThoai)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CMND, new { @class = "control-label col-md-3" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.CMND, new { @class = "le-input" })
+                                @Html.ValidationMessageFor(model => model.CMND)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HoTen, new { @class = "control-label col-md-3" })
+                            <div class="col-md-5">
+                                @Html.TextBoxFor(model => model.HoTen, new { @class = "le-input" })
+                                @Html.ValidationMessageFor(model => model.HoTen)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NgaySinh, new { @class = "control-label col-md-3" })
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "le-input" } })
+                                @Html.ValidationMessageFor(model => model.NgaySinh)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GioiTinh, new { @class = "control-label col-md-3" })
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(model => model.GioiTinh, new SelectList(new List<object>
+                        {
+                            new { value = true , text = "Nam"  },
+                            new { value = false , text = "Nữ" },
+                        }, "value", "text", Model.GioiTinh), new { @class = "le-input" })
+                                @Html.ValidationMessageFor(model => model.GioiTinh)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DiaChi, new { @class = "control-label col-md-3" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.DiaChi, new { @class = "le-input" })
+                                @Html.ValidationMessageFor(model => model.DiaChi)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Lưu lại" class="le-button huge" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @using (Html.BeginForm("EditAvatar", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="col-md-4">
+                    @Html.AntiForgeryToken()
+                    @Html.LabelFor(model => model.Avatar, new { @class = "control-label" })
+
+                    @*@Html.EditorFor(model => model.Avatar)
+                    @Html.ValidationMessageFor(model => model.Avatar)*@
+                    <div style="text-align:center; margin:20px">
+                        <img src="@Url.Content("~/images/avatars/")@Model.Avatar" style="width: 256px; height: 256px; -webkit-border-radius: 123px; /* Saf3+, Chrome */ border-radius: 123px; /* Opera 10.5, IE 9 */ /*-moz-border-radius: 30px;  Disabled for FF1+ */ ">
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="file" accept=".jpg" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Tải lên" class="le-button" />
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</main>

@@ -1,0 +1,12 @@
+﻿<div>
+    @{
+        var myChart = new Chart(width: 1024, height: 400)
+            .AddTitle("Doanh thu từ " + ViewBag.froms + " đến " + ViewBag.tos)
+            .AddSeries(
+            name: "Employee",
+            chartType:"line",
+            xValue: Model, xField: "ngaymua",
+            yValues: Model, yFields: "tongtien")
+            .Write();
+    }
+</div>

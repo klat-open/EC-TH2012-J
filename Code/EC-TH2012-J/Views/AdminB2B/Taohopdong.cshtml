@@ -1,0 +1,99 @@
+﻿@model EC_TH2012_J.Models.HopDongNCC
+@{
+    ViewBag.Title = "Thêm Hợp Đồng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Datetimepicker/jquery-ui.css" rel="stylesheet" />
+<script src="~/Datetimepicker/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".news_date").datepicker();
+    });
+</script>
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+
+                @using (Html.BeginForm("Taohopdong", "AdminB2B", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <a href="">Thêm nhà cần cung cấp</a>
+
+                            </div>
+                        </div>
+                        <div class="alert alert-info">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary()
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Nhà cần cung cấp", new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(m => m.MaNCC, (SelectList)ViewBag.TenNCC, new { @class = "form-control", required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Ngày ký", new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.NgayKy, new { @class = "form-control news_date", required = "required", id = "news_date" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ThoiHanHD, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.ThoiHanHD, new { @class = "form-control", required = "required", @type = "number" })
+                                @Html.ValidationMessageFor(m => m.ThoiHanHD)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("MaSP", new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.DropDownListFor(m => m.MaSP, (SelectList)ViewBag.MaSP, String.Empty, new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessageFor(m => m.MaSP)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.SLToiThieu, new { @class = "control-label col-md-2", })
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.SLToiThieu, new { @class = "form-control", required = "required", @type = "number" })
+                                @Html.ValidationMessageFor(m => m.SLToiThieu)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.SLCungCap, new { @class = "control-label col-md-2", })
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(m => m.SLCungCap, new { @class = "form-control", required = "required", @type = "number" })
+                                @Html.ValidationMessageFor(m => m.SLCungCap)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Thêm mới" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

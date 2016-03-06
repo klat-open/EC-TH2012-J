@@ -1,0 +1,87 @@
+﻿@model EC_TH2012_J.Models.Link
+@{
+    ViewBag.Title = "SlideShowSetting";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                <div class="Ajax-Table">
+                    @Html.Action("SlideShowSetting", "GiaoDien")
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Thêm @ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+
+                @using (Html.BeginForm("ThemSlide", "GiaoDien", FormMethod.Post, new { autocomplete = "off" }))
+                {
+
+                    <div class="form-horizontal">
+                        <div class="alert alert-info" style="display:none">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary()
+                            @Html.HiddenFor(model=>model.Group)
+                            <span id="kiemtratrung"></span>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.Text, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Text)
+                                <span id="loaiisok"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                <img id="anhdaidien" src="@Url.Content("~/template/")assets/images/blank.gif" alt="your image" width="1920" height="446" />
+                                <input type="file" name="anhslide" accept=".jpg" class="form-control" onchange="readURL(this, '#anhdaidien');" />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Thêm mới" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

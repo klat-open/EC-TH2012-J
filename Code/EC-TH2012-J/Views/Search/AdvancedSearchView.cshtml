@@ -1,0 +1,300 @@
+﻿@{
+    ViewBag.Title = "Tìm kiếm sản phẩm";
+    Layout = "~/Views/Shared/_LayoutWithSideBar.cshtml";
+}
+@using EC_TH2012_J.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<SanPham>
+
+@*Code ajax phân trang*@
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $(document).on("click", "#nav_grid a[href]", function () {
+            $.ajax({
+                url: $(this).attr("href"),
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $('#grid-view').html(result);
+                    $('html, body').animate({
+                        scrollTop: $("#grid-view").offset().top
+                    }, 500);
+                }
+            });
+            return false;
+        });
+    });
+
+    $(document).ready(function () {
+        $(document).on("click", "#nav_list a[href]", function () {
+            $.ajax({
+                url: $(this).attr("href"),
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $('#list-view').html(result);
+                    $('html, body').animate({
+                        scrollTop: $("#list-view").offset().top
+                    }, 500);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+<!-- ========================================= CONTENT ========================================= -->
+@*<section id="recommended-products" class="carousel-holder hover small">
+        <div class="title-nav">
+            <h2 class="inverse">Sản phẩm khuyên dùng</h2>
+            <div id="owl-recommended-products" class="owl-carousel product-grid-holder">
+                <div class="no-margin carousel-item product-item-holder hover size-medium">
+                    <div class="product-item">
+                        <div class="ribbon red"><span>sale</span></div>
+                        <div class="image">
+                            <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-11.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">LC-70UD1U 70" class aquos 4K ultra HD</a>
+                            </div>
+                            <div class="brand">sharp</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                <a class="btn-add-to-compare" href="#">compare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.carousel-item -->
+                <div class="no-margin carousel-item product-item-holder hover size-medium">
+                    <div class="product-item">
+                        <div class="ribbon blue"><span>new!</span></div>
+                        <div class="image">
+                            <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-12.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">cinemizer OLED 3D virtual reality TV Video</a>
+                            </div>
+                            <div class="brand">zeiss</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                <a class="btn-add-to-compare" href="#">compare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.carousel-item -->
+                <div class="no-margin carousel-item product-item-holder hover size-medium">
+                    <div class="product-item">
+                        <div class="image">
+                            <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-13.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">s2340T23" full HD multi-Touch Monitor</a>
+                            </div>
+                            <div class="brand">dell</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                <a class="btn-add-to-compare" href="#">compare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.carousel-item -->
+                <div class="no-margin carousel-item product-item-holder hover size-medium">
+                    <div class="product-item">
+                        <div class="ribbon blue"><span>new!</span></div>
+                        <div class="image">
+                            <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-14.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">kardon BDS 7772/120 integrated 3D</a>
+                            </div>
+                            <div class="brand">harman</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                <a class="btn-add-to-compare" href="#">compare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.carousel-item -->
+                <div class="no-margin carousel-item product-item-holder hover size-medium">
+                    <div class="product-item">
+                        <div class="ribbon green"><span>bestseller</span></div>
+                        <div class="image">
+                            <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-15.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">netbook acer travel B113-E-10072</a>
+                            </div>
+                            <div class="brand">acer</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                <a class="btn-add-to-compare" href="#">compare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.carousel-item -->
+                <div class="no-margin carousel-item product-item-holder hover size-medium">
+                    <div class="product-item">
+                        <div class="image">
+                            <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-16.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">iPod touch 5th generation,64GB, blue</a>
+                            </div>
+                            <div class="brand">apple</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                <a class="btn-add-to-compare" href="#">compare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.carousel-item -->
+                <div class="no-margin carousel-item product-item-holder hover size-medium">
+                    <div class="product-item">
+                        <div class="image">
+                            <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-13.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">s2340T23" full HD multi-Touch Monitor</a>
+                            </div>
+                            <div class="brand">dell</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                <a class="btn-add-to-compare" href="#">compare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.carousel-item -->
+                <div class="no-margin carousel-item product-item-holder hover size-medium">
+                    <div class="product-item">
+                        <div class="ribbon blue"><span>new!</span></div>
+                        <div class="image">
+                            <img alt="" src="assets/images/blank.gif" data-echo="assets/images/products/product-14.jpg" />
+                        </div>
+                        <div class="body">
+                            <div class="title">
+                                <a href="single-product.html">kardon BDS 7772/120 integrated 3D</a>
+                            </div>
+                            <div class="brand">harman</div>
+                        </div>
+                        <div class="prices">
+                            <div class="price-current text-right">$1199.00</div>
+                        </div>
+                        <div class="hover-area">
+                            <div class="add-cart-button">
+                                <a href="single-product.html" class="le-button">add to cart</a>
+                            </div>
+                            <div class="wish-compare">
+                                <a class="btn-add-to-wishlist" href="#">add to wishlist</a>
+                                <a class="btn-add-to-compare" href="#">compare</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.carousel-item -->
+            </div><!-- /#recommended-products-carousel .owl-carousel -->
+    </section>*@<!-- /.carousel-holder -->
+<section id="gaming">
+    <div class="grid-list-products">
+        <h2 class="section-title">Kết quả tìm kiếm</h2>
+
+        <div class="control-bar">
+            @*Chưa code phần sort*@
+            <div id="popularity-sort" class="le-select">
+                <select data-placeholder="sort by popularity">
+                    <option value="1">Sắp xếp theo loại</option>
+                    <option value="2">Sắp xếp theo hãng</option>
+                    <option value="3">Sắp xếp theo giá</option>
+                </select>
+            </div>
+
+            <div id="item-count" class="le-select">
+                <select>
+                    <option value="1">Tăng dần</option>
+                    <option value="2">Giảm dần</option>
+                </select>
+            </div>
+            <div class="grid-list-buttons">
+                <ul>
+                    <li class="grid-list-button-item active"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Lưới</a></li>
+                    <li class="grid-list-button-item "><a data-toggle="tab" href="#list-view"><i class="fa fa-th-list"></i> Dánh sách</a></li>
+                </ul>
+            </div>
+        </div><!-- /.control-bar -->
+
+        <div class="tab-content">
+            <div id="grid-view" class="products-grid fade tab-pane in active">
+                @Html.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "grid" })
+
+
+            </div><!-- /.products-grid #grid-view -->
+
+
+            <div id="list-view" class="products-grid fade tab-pane ">
+                @Html.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "list" })
+            </div><!-- /.products-grid #list-view -->
+        </div><!-- /.tab-content -->
+    </div><!-- /.grid-list-products -->
+</section><!-- /#gaming -->
+<!-- ========================================= CONTENT : END ========================================= -->

@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "Lấy số lượng tồn bên khách hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Chứng thực Basic</h5>
+                        <hr />
+                        <form method="get" class="form-horizontal" id="basic">
+
+                            <div class="form-group">
+                                @Html.Label("Username", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="username" id="username" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Password", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    <input type="password" class="form-control" name="password" id="password" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("supplier_key", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="supplier_key" id="supplier_key" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn btn-default" name="btn" value="Get Order1" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Chứng thực access token</h5>
+                        <hr />
+                        <form method="get" class="form-horizontal" id="Oauth">
+                            <div class="form-group">
+                                @if (EC_TH2012_J.Models.ManagerObiect.Token == "")
+                                {
+                                    <div>
+                                        Bạn phải lấy token trước đã : <a id="addto-cart" href="javascript:;" class="le-button huge" data-toggle="modal" data-target="#myModal">Tại đây</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Access Token", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="access_token" id="access_token" required value="@EC_TH2012_J.Models.ManagerObiect.Token" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("supplier key", new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" name="supplier_key" id="supplier_key1" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn btn-default" name="btn" value="Get Order2" />
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                <div class="form-inline" style="text-align: right; padding: 10px">
+
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="tensp" type="text" class="form-control" placeholder="Tên sản phẩm" oninput="timkiemhopdong()">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="mahd" type="text" class="form-control" placeholder="Mã hợp đồng" oninput="timkiemhopdong()">
+                    </div>
+
+                </div>
+                <div class="Ajax-Table">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+@Html.Action("GetAccesstoken", "AdminB2B", new { redirectUrl = "/AdminB2B/Laysoluongton?doiacID=" + ViewBag.doitac });
+

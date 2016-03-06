@@ -1,0 +1,54 @@
+﻿@model EC_TH2012_J.Models.RegisterViewModel
+
+<h2 class="bordered">Đăng ký</h2>
+<p>Bạn hãy đăng ký tài khoản để mua hàng</p>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "register-form cf-style-1", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <div class="field-row">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "le-input" })
+    </div>
+
+    <div class="field-row">
+        @Html.LabelFor(m => m.UserName)
+        @Html.TextBoxFor(m => m.UserName, new { @class = "le-input" })
+    </div>
+    <div class="field-row">
+        @Html.LabelFor(m => m.HoTen)
+        @Html.TextBoxFor(m => m.HoTen, new { @class = "le-input" })
+    </div>
+
+    <div class="field-row">
+        @Html.LabelFor(m => m.DienThoai)
+        @Html.TextBoxFor(m => m.DienThoai, new { @class = "le-input" })
+    </div>
+    
+    <div class="field-row">
+        @Html.LabelFor(m => m.DiaChi)
+        @Html.TextBoxFor(m => m.DiaChi, new { @class = "le-input" })
+    </div>
+
+    <div class="field-row">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "le-input" })
+    </div>
+    <div class="field-row">
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "le-input" })
+    </div>
+    <div class="buttons-holder">
+        <input type="submit" class="le-button huge" value="Đăng ký" />
+    </div>
+}
+
+<h2 class="semi-bold">Đăng ký để được :</h2>
+
+<ul class="list-unstyled list-benefits">
+    <li><i class="fa fa-check primary-color"></i> Thanh toán khi mua hàng nhanh nhất</li>
+    <li><i class="fa fa-check primary-color"></i> Quản lý đơn hàng của bạn dễ dàng</li>
+    <li><i class="fa fa-check primary-color"></i> Những ưu đãi từ chúng tôi dành cho khách hàng</li>
+</ul>

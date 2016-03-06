@@ -1,0 +1,8 @@
+﻿@model IQueryable<EC_TH2012_J.Models.BinhLuan>
+
+<div style="padding-left: 100px">
+    @foreach (var item in Model)
+    {
+        @Html.Partial("_CommentPartial", item)
+    }
+</div>

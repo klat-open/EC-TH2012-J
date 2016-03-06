@@ -1,0 +1,60 @@
+﻿@using EC_TH2012_J.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<SanPham>
+
+@if (ViewBag.type == "grid")
+{
+    <div class="product-grid-holder">
+        <div class="row no-margin">
+            @foreach (var item in Model)
+            {
+                <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
+                    @Html.Partial("_ProductGridShowPartal", item)
+                </div><!-- /.product-item-holder -->
+            }
+        </div><!-- /.row -->
+    </div><!-- /.product-grid-holder -->
+    <div class="pagination-holder">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 text-left">
+                <div id="nav_grid">
+                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "grid", page = page }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="result-counter">
+                    Có tât cả <span>@Model.TotalItemCount</span> sản phẩm
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.pagination-holder -->
+}
+else
+{
+    <div class="products-list">
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_ProductListShowPartial", item)
+        }
+    </div><!-- /.products-list -->
+    <div class="pagination-holder">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 text-left">
+                <div id="nav_list">
+                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "list",page = page }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <div class="result-counter">
+                    Có tât cả <span>@Model.TotalItemCount</span> sản phẩm
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.pagination-holder -->
+}
+
+
+
+
+

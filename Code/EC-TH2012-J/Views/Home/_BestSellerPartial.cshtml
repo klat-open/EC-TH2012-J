@@ -1,0 +1,62 @@
+﻿@using EC_TH2012_J.Models;
+@model List<SanPham>
+
+<div class="product-grid-holder medium">
+
+    <div class="col-xs-12 col-md-7 no-margin">
+        <div class="row no-margin">
+            @for (int i = 1; i < Model.Count; ++i)
+            {
+                <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
+                    @Html.Partial("_ProductGridShowPartal", Model[i])
+                </div><!-- /.product-item-holder -->
+            }
+        </div>
+    </div><!-- /.col -->
+
+    <div class="col-xs-12 col-md-5 no-margin">
+        <div class="product-item-holder size-big single-product-gallery small-gallery">
+
+            <div id="best-seller-single-product-slider" class="single-product-slider owl-carousel">
+                <div class="single-product-gallery-item" id="slide1">
+                    <a data-rel="prettyphoto" href="#">
+                        <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model[0].AnhDaiDien" />
+                    </a>
+                </div><!-- /.single-product-gallery-item -->
+
+                <div class="single-product-gallery-item" id="slide2">
+                    <a data-rel="prettyphoto" href="#">
+                        <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model[0].AnhNen" />
+                    </a>
+                </div><!-- /.single-product-gallery-item -->
+
+                <div class="single-product-gallery-item" id="slide3">
+                    <a data-rel="prettyphoto" href="images/products/product-gallery-01.jpg">
+                        <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model[0].AnhKhac" />
+                    </a>
+                </div><!-- /.single-product-gallery-item -->
+            </div><!-- /.single-product-slider -->
+
+            <div class="gallery-thumbs clearfix">
+                <ul>
+                    <li><a class="horizontal-thumb active" data-target="#best-seller-single-product-slider" data-slide="0" href="#slide1"><img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model[0].AnhDaiDien" height="60" width="67" /></a></li>
+                    <li><a class="horizontal-thumb" data-target="#best-seller-single-product-slider" data-slide="1" href="#slide2"><img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model[0].AnhNen" height="60" width="67" /></a></li>
+                    <li><a class="horizontal-thumb" data-target="#best-seller-single-product-slider" data-slide="2" href="#slide3"><img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/images/products/")@Model[0].AnhKhac" height="60" width="67" /></a></li>
+                </ul>
+            </div><!-- /.gallery-thumbs -->
+
+            <div class="body">
+                <div class="label-discount clear"></div>
+                <div class="title">
+                    <a href="single-product.html">@Model[0].TenSP</a>
+                </div>
+                <div class="brand">@Model[0].HangSanXuat.TenHang</div>
+            </div>
+            <div class="prices text-right">
+                <div class="price-current inline">@string.Format("{0:0,0}", Model[0].GiaTien) VNĐ</div>
+                <a href="javascript:;" class="le-button big inline" onclick="Addcart('@Model[0].MaSP',1)">Thêm vào giỏ</a>
+            </div>
+        </div><!-- /.product-item-holder -->
+    </div><!-- /.col -->
+
+</div><!-- /.product-grid-holder -->

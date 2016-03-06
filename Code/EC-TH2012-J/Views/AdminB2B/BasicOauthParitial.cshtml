@@ -1,0 +1,14 @@
+﻿<div class="form-group">
+    @if (EC_TH2012_J.Models.ManagerObiect.Token == "")
+    {
+        <div class="col-md-4 control-label">
+            Bạn phải lấy token trước đã : <a id="addto-cart" href="javascript:;" class="le-button huge" data-toggle="modal" data-target="#myModal">Tại đây</a>
+        </div>
+    }
+</div>
+<div class="form-group">
+    @Html.Label("Access Token", new { @class = "col-md-4 control-label" })
+    <div class="col-md-8">
+        <input type="text" class="form-control" name="access_token" id="access_token" required value="@EC_TH2012_J.Models.ManagerObiect.Token" />
+    </div>
+</div>

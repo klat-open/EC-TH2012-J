@@ -1,0 +1,80 @@
+﻿<script>
+    //$(document).ready(function () {
+    //    $(document).on("click", "#nav_grid a[href]", function () {
+    //        $.ajax({
+    //            url: $(this).attr("href"),
+    //            type: 'GET',
+    //            cache: false,
+    //            success: function (result) {
+    //                $('#grid-view').html(result);
+    //                $('html, body').animate({
+    //                    scrollTop: $("#grid-view").offset().top
+    //                }, 500);
+    //            }
+    //        });
+    //        return false;
+    //    });
+    //});
+
+    function summitfilter()
+    {
+        var form = document.getElementById("productfilterfrm");
+        form.submit();
+    }
+
+</script>
+
+<!-- ========================================= PRODUCT FILTER ========================================= -->
+@using EC_TH2012_J.Models;
+<div class="widget">
+    <h1>Lọc sản phẩm</h1>
+    <form id="productfilterfrm" action="@Url.Action("AdvancedSearchView", "Search")" autocomplete="off">
+        <div class="body bordered">
+            <div class="category-filter">
+                <h2>Loại</h2>
+                <hr>
+                <h5>Loại sản phẩm</h5>
+                <ul>
+                    @{
+                        CategoryModel cat = new CategoryModel();
+                        IQueryable<LoaiSP> catlist = cat.GetCategory();
+                        foreach (var item in catlist)
+                        {
+                            <li><input name="loai" class="le-checkbox" type="radio" value="@item.MaLoai" /> <label>@item.TenLoai</label></li>
+                        }
+                    }
+                </ul>
+                <h5>Hãng sản xuất</h5>
+                <ul>
+                    @{
+                        HangSanXuatModel han = new HangSanXuatModel();
+                        IQueryable<HangSanXuat> hanlist = han.GetHangSX();
+                        foreach (var item in hanlist)
+                        {
+                            <li><input name="hangsx" class="le-checkbox" type="radio" value="@item.HangSX" /> <label>@item.TenHang</label></li>
+                        }
+                    }
+                </ul>
+            </div><!-- /.category-filter -->
+
+            <div class="price-filter">
+                <h2>Giá</h2>
+                <hr>
+                <div class="price-range-holder">
+                    @*<input type="text" class="price-slider" value="">*@
+                    <h5>Từ</h5>
+                    <input class="le-input" type="number" name="minprice" step="500000" />
+                    <h5>Đến</h5>
+                    <input class="le-input" type="number" name="maxprice" step="500000" />
+                    <span class="min-max">
+                        Giá: 0 VNĐ - 30,000,000 VNĐ
+                    </span>
+                    <span class="filter-button">
+                        <a style="border: 2px solid #ececec; background-color:#ececec; border-radius:10px" href='javascript:summitfilter()'>Tìm kiếm</a>
+                    </span>
+                </div>
+            </div><!-- /.price-filter -->
+        </div><!-- /.body -->
+    </form>
+</div><!-- /.widget -->
+<!-- ========================================= PRODUCT FILTER : END ========================================= -->

@@ -1,0 +1,59 @@
+﻿@model List<EC_TH2012_J.Models.GiaoDien>
+@{
+    ViewBag.Title = "General";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="form-horizontal">
+                    <div class="form-group">               
+                        <label class="control-label col-md-2"> Logo </label>
+                        <div class="col-md-3">
+                            <img src="@Url.Content("~/images/")@Model[0].GiaTri" width="233" height="54" style="margin-bottom:10px" />
+                            <input type="file" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2"> Tên website </label>
+                        <div class="col-md-5"> 
+                            @Html.TextBoxFor(model => model[1].GiaTri, new { @class = "form-control", placeholder = "Tên website của bạn" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2"> Facebook </label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model[3].GiaTri, new { @class = "form-control", placeholder = "Địa chỉ facebook" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2"> Pinterest </label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model[4].GiaTri, new { @class = "form-control", placeholder = "Địa chỉ Pinterest" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2"> Twitter </label>
+                        <div class="col-md-5">
+                            @Html.TextBoxFor(model => model[5].GiaTri, new { @class = "form-control ", placeholder = "Địa chỉ Twitter" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+    </div><!--/row-->
+</div>
+

@@ -1,0 +1,26 @@
+﻿@model List<EC_TH2012_J.Models.Thanhviennhom>
+@{
+    ViewBag.Title = "Thongtinnhom";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+
+<div class="oauth">
+    <h4>Thông tin các thành viên trong nhóm :</h4>
+    <hr />
+    <table class="table-bordered group">
+        <tr>
+            <th id="MSSV">MSSV</th>
+            <th id="hovaten">Họ và Tên</th>
+            <th id="link">Link Facebook</th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td>@Model[i].MSSV</td>
+                <td>@Model[i].Hoten</td>
+                <td>@Model[i].LinkFacebook</td>
+            </tr>
+        }
+    </table>
+</div>
+

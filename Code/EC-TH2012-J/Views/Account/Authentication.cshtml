@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Đăng ký - Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+
+<!-- ========================================= MAIN ========================================= -->
+<main id="authentication" class="inner-bottom-md">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6">
+                <section class="section sign-in inner-right-xs">
+                    @Html.Action("Login", new { returnUrl = ViewBag.ReturnUrl })
+                </section><!-- /.sign-in -->
+            </div><!-- /.col -->
+
+            <div class="col-md-6">
+                <section class="section register inner-left-xs">
+                    @Html.Action("Register")
+                </section><!-- /.register -->
+
+            </div><!-- /.col -->
+
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</main><!-- /.authentication -->
+<!-- ========================================= MAIN : END ========================================= -->
+

@@ -1,0 +1,69 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "Chức vụ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@Html.ActionLink("Create Role", "Create", "Role")
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                <div class="form-inline" style="text-align: right; padding: 10px">
+                </div>
+                <div class="Ajax-Table">
+                    @Html.Action("Rolelist","Roles")
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Thêm @ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+
+                @using (Html.BeginForm("Create", "Roles"))
+                {
+                    <table id="tbrole">
+                        <tr>
+                            <td class="c"><label class="control-label">Tên chức vụ</label></td>
+                            <td class="c">
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Thêm mới" class="btn btn-info" />
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

@@ -1,0 +1,91 @@
+﻿@model EC_TH2012_J.Models.Giohang
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+<section id="cart-page">
+    <div class="container">
+        <!-- ========================================= CONTENT ========================================= -->
+        <div class="col-xs-12 col-md-9 items-holder no-margin">
+            @for (int i = 0; i < Model.getGiohang().Count; i++)
+            {
+                <div class="row no-margin cart-item">
+                    <div class="col-xs-12 col-sm-2 no-margin">
+                        <a href="#" class="thumb-holder">
+                            <img class="lazy" alt="" src="~/images/products/@Model.getGiohang()[i].sanPham.AnhDaiDien" />
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-5 ">
+                        <div class="title">
+                            <a href="@Url.Action("Index", "SanPham", new { ID = @Model.getGiohang()[i].sanPham.MaSP })">@Model.getGiohang()[i].sanPham.TenSP</a>
+                        </div>
+                        <div class="brand">@Model.getGiohang()[i].sanPham.HangSX</div>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 no-margin">
+                        <div class="quantity">
+                            <div class="le-quantity">
+                                <form>
+                                    <a class="minus" href="javascript:;" onclick="changequality(@i,'G')"></a>
+                                    <input name="quantity1" id="quantity+@i" class="quantity1" readonly="readonly" type="text" value="@Model.getGiohang()[i].Soluong" />
+                                    <a class="plus" href="javascript:;" onclick="changequality(@i,'T')"></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 no-margin">
+                        <div class="price" style="padding-right:15px;">
+                            @string.Format("{0:0,0}", @Model.getGiohang()[i].Thanhtien) VNĐ
+                        </div>
+                        <a class="close-btn" href="javascript:;" onclick="xoagiohang(@i)"></a>
+                    </div>
+                </div><!-- /.cart-item -->
+            }
+        </div>
+        <!-- ========================================= CONTENT : END ========================================= -->
+        <!-- ========================================= SIDEBAR ========================================= -->
+        <div class="col-xs-12 col-md-3 no-margin sidebar ">
+            <div class="widget cart-summary">
+                <h1 class="border">Giỏ hàng</h1>
+                <div class="body">
+                    <ul class="tabled-data no-border inverse-bold">
+                        <li>
+                            <label>Tổng tiền sản phẩm :</label>
+                            <div class="value pull-right">@string.Format("{0:0,0}",@Model.Tinhtongtiensanpham()) VNĐ</div>
+                        </li>
+                        <li>
+                            <label>Tổng số lượng :</label>
+                            <div class="value pull-right">@Model.Tinhtongsoluongtronggio()</div>
+                        </li>
+                        <li>
+                            <label>Phí vận chuyển :</label>
+                            <div class="value pull-right">Miễn phí</div>
+                        </li>
+                    </ul>
+                    <ul id="total-price" class="tabled-data inverse-bold no-border">
+                        <li>
+                            <label>Tổng tiền :</label>
+                            <div class="value pull-right">@string.Format("{0:0,0}",@Model.TinhtongtienCart()) VNĐ</div>
+                        </li>
+                    </ul>
+                    <div class="buttons-holder">
+                        <a class="le-button big" href='@Url.Action("Checkout", "Home")'>Chấp thuận</a>
+                        <a class="simple-link block" href='@Url.Action("Index","Home")'>Tiếp tục mua hàng</a>
+                    </div>
+                </div>
+            </div><!-- /.widget -->
+            <div id="cupon-widget" class="widget">
+                <h1 class="border">Mã khuyến mãi</h1>
+                <div class="body">
+                    <form>
+                        <div class="inline-input">
+                            <input data-placeholder="enter coupon code" type="text" />
+                            <button class="le-button" type="submit">Áp dụng</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.widget -->
+        </div><!-- /.sidebar -->
+        <!-- ========================================= SIDEBAR : END ========================================= -->
+    </div>
+</section>
+

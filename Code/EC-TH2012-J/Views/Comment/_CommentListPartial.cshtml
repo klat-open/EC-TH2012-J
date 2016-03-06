@@ -1,0 +1,16 @@
+﻿@using EC_TH2012_J.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<BinhLuan>
+
+<span class="bold">Gồm @Model.TotalItemCount bình luận </span>
+@foreach (var item in Model)
+{
+    <hr />
+    @Html.Partial("_CommentPartial", item)
+    @Html.Action("ChilComment", "Comment", new { mabl = item.MaBL });
+}
+<div id="nav">
+    @Html.PagedListPager(Model, page => Url.Action("LoadComment", "Comment", new { masp = ViewBag.masp, page = page }))
+</div>
+

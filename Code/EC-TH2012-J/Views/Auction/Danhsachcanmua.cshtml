@@ -1,0 +1,12 @@
+﻿@model System.Collections.Generic.List<EC_TH2012_J.Models.Sanphamcanmua>
+
+<div class="product-grid-holder">
+    <div class="row no-margin">
+        @foreach (var item in Model)
+        {
+            <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
+                @Html.Action("ChitietAuction", "Auction", new { a = item})
+            </div><!-- /.product-item-holder -->
+        }
+    </div><!-- /.row -->
+</div><!-- /.product-grid-holder -->

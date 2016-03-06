@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+}
+<div id="top-banner-and-menu" class="homepage2">
+    <div class="container">
+        <div class="col-xs-12">
+            <!-- ========================================== SECTION – HERO ========================================= -->
+     
+
+                    @Html.Action("SlideShowView","GiaoDien")
+
+
+            <!-- ========================================= SECTION – HERO : END ========================================= -->
+        </div>
+    </div>
+</div><!-- /.homepage2 -->
+<!-- ========================================= HOME BANNERS ========================================= -->
+
+<!-- ========================================= HOME BANNERS : END ========================================= -->
+<script src="@Url.Content("~/js/loadmore.js")"></script>
+<div id="products-tab" class="wow fadeInUp">
+    <div class="container">
+        <div class="tab-holder">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#featured" data-toggle="tab">Nổi bật</a></li>
+                <li><a href="#new-arrivals" data-toggle="tab">Mới nhập</a></li>
+                <li><a href="#top-sales" data-toggle="tab">Giảm giá</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="featured">
+                    <div class="product-grid-holder">
+                        <div id="spnoibat">
+                            @Html.Action("SPNoiBat", "Home")
+                        </div>
+                    </div>
+                    <div class="loadmore-holder text-center">
+                        <div id="sphotlink">
+                            <a class="btn-loadmore" href='javascript:LoadMorePro(4,"SPNoiBat","#sphotlink","#spnoibat")'>
+                                <i class="fa fa-plus"></i>
+                                Tải thêm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="tab-pane" id="new-arrivals">
+                <div class="product-grid-holder">
+                    <div id="spmoiload">
+                        @Html.Action("SPMoiNhap", "Home")
+                    </div>
+                </div>
+                <div class="loadmore-holder text-center">
+                    <div id="spmoilink">
+                        <a class="btn-loadmore" href='javascript:LoadMorePro(4,"SPMoiNhap","#spmoilink","#spmoiload")'>
+                            <i class="fa fa-plus"></i>
+                            Tải thêm
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="top-sales">
+                <div class="product-grid-holder">
+                    <div id="spkmload">
+                        @Html.Action("SPKhuyenMai", "Home")
+                    </div>
+                </div>
+                <div class="loadmore-holder text-center">
+                    <div id="spkmlink">
+                        <a class="btn-loadmore" href='javascript:LoadMorePro(4,"SPKhuyenMai","#spkmlink","#spkmload")'>
+                            <i class="fa fa-plus"></i>
+                            Tải thêm
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- ========================================= BEST SELLERS ========================================= -->
+<section id="bestsellers" class="color-bg wow fadeInUp">
+    <div class="container">
+        <h1 class="section-title">Bán chạy nhất</h1>
+
+        @Html.Action("SPBanChay","Home")
+    </div><!-- /.container -->
+</section><!-- /#bestsellers -->
+<!-- ========================================= BEST SELLERS : END ========================================= -->
+<!-- ========================================= RECENTLY VIEWED ========================================= -->
+<section id="recently-reviewd" class="wow fadeInUp">
+    <div class="container">
+        <div class="carousel-holder hover">
+
+            <div class="title-nav">
+                <h2 class="h1">Sản phẩm vừa xem</h2>
+                <div class="nav-holder">
+                    <a href="#prev" data-target="#owl-recently-viewed" class="slider-prev btn-prev fa fa-angle-left"></a>
+                    <a href="#next" data-target="#owl-recently-viewed" class="slider-next btn-next fa fa-angle-right"></a>
+                </div>
+            </div><!-- /.title-nav -->
+
+            <div id="owl-recently-viewed" class="owl-carousel product-grid-holder">
+                @Html.Action("SPMoiXem", "Home")
+            </div><!-- /#recently-carousel -->
+
+        </div><!-- /.carousel-holder -->
+    </div><!-- /.container -->
+</section><!-- /#recently-reviewd -->
+<!-- ========================================= RECENTLY VIEWED : END ========================================= -->
+<!-- ========================================= TOP BRANDS ========================================= -->
+@*<section id="top-brands" class="wow fadeInUp">
+    <div class="container">
+        <div class="carousel-holder">
+
+            <div class="title-nav">
+                <h1>Top Brands</h1>
+                <div class="nav-holder">
+                    <a href="#prev" data-target="#owl-brands" class="slider-prev btn-prev fa fa-angle-left"></a>
+                    <a href="#next" data-target="#owl-brands" class="slider-next btn-next fa fa-angle-right"></a>
+                </div>
+            </div><!-- /.title-nav -->
+
+            <div id="owl-brands" class="owl-carousel brands-carousel">
+
+                <div class="carousel-item">
+                    <a href="#">
+                        <img alt="" src="~/template/assets/images/brands/brand-01.jpg" />
+                    </a>
+                </div><!-- /.carousel-item -->
+
+                <div class="carousel-item">
+                    <a href="#">
+                        <img alt="" src="~/template/assets/images/brands/brand-02.jpg" />
+                    </a>
+                </div><!-- /.carousel-item -->
+
+                <div class="carousel-item">
+                    <a href="#">
+                        <img alt="" src="~/template/assets/images/brands/brand-03.jpg" />
+                    </a>
+                </div><!-- /.carousel-item -->
+
+                <div class="carousel-item">
+                    <a href="#">
+                        <img alt="" src="~/template/assets/images/brands/brand-04.jpg" />
+                    </a>
+                </div><!-- /.carousel-item -->
+
+                <div class="carousel-item">
+                    <a href="#">
+                        <img alt="" src="~/template/assets/images/brands/brand-01.jpg" />
+                    </a>
+                </div><!-- /.carousel-item -->
+
+                <div class="carousel-item">
+                    <a href="#">
+                        <img alt="" src="~/template/assets/images/brands/brand-02.jpg" />
+                    </a>
+                </div><!-- /.carousel-item -->
+
+                <div class="carousel-item">
+                    <a href="#">
+                        <img alt="" src="~/template/assets/images/brands/brand-03.jpg" />
+                    </a>
+                </div><!-- /.carousel-item -->
+
+                <div class="carousel-item">
+                    <a href="#">
+                        <img alt="" src="~/template/assets/images/brands/brand-04.jpg" />
+                    </a>
+                </div><!-- /.carousel-item -->
+
+            </div><!-- /.brands-caresoul -->
+
+        </div><!-- /.carousel-holder -->
+    </div><!-- /.container -->
+</section>*@<!-- /#top-brands -->
+<!-- ========================================= TOP BRANDS : END ========================================= --> 

@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        ===
+        This comment should NOT be removed.
+
+        Charisma v2.0.0
+
+        Copyright 2012-2014 Muhammad Usman
+        Licensed under the Apache License v2.0
+        http://www.apache.org/licenses/LICENSE-2.0
+
+        http://usman.it
+        http://twitter.com/halalit_usman
+        ===
+    -->
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- The styles -->
+    <link id="bs-css" href="@Url.Content("~/templatebackend/")css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="@Url.Content("~/templatebackend/")css/charisma-app.css" rel="stylesheet">
+    <link href='@Url.Content("~/templatebackend/")bower_components/chosen/chosen.min.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")css/jquery.noty.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")css/noty_theme_default.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")css/elfinder.min.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")css/elfinder.theme.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")css/jquery.iphone.toggle.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")css/uploadify.css' rel='stylesheet'>
+    <link href='@Url.Content("~/templatebackend/")css/animate.min.css' rel='stylesheet'>
+    <!-- jQuery -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/js/themxoasuaajax.js")"></script>
+    <script src="~/js/B2BAdmin.js"></script>
+    
+    <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- The fav icon -->
+    <link rel="shortcut icon" href="@Url.Content("~/templatebackend/")img/favicon.ico">
+</head>
+<body>
+    <!-- topbar starts -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-inner">
+            <!-- user dropdown starts -->
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> @User.Identity.Name </span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action("EditInfo", "Account")">Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="@Url.Action("LogOut", "Account")">Logout</a></li>
+                </ul>
+            </div>
+            <!-- user dropdown ends -->
+            <ul class="collapse navbar-collapse nav navbar-nav top-menu">
+                <li><a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-globe"></i> Về trang chủ</a></li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-star"></i> Chức năng <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- topbar ends -->
+    <div class="ch-container">
+        <div class="row">
+
+            <!-- left menu starts -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav" >
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li>
+                                <a class="ajax-link" href="@Url.Action("Index","Admin")"><i class="glyphicon glyphicon-home red"></i><span style="font-weight: bold; color:#ff0000"> Dashboard</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="glyphicon glyphicon-gift red"></i><span style="font-weight: bold; color:#ff0000"> Khu vực sản phẩm</span></a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="@Url.Action("SanPham","Admin")">Quản lý sản phẩm</a></li>
+                                    <li><a href="@Url.Action("Index","LoaiSP")">Quản lý loại sản phẩm</a></li>
+                                    <li><a href="@Url.Action("Index","HangSX")">Quản lý hãng sản xuất</a></li>
+                                    <li><a href="@Url.Action("Index","KhuyenMai")">Quản lý khuyến mãi</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="glyphicon glyphicon-user red"></i><span style="font-weight: bold; color: #ff0000;"> Khu vực thành viên</span></a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="@Url.Action("Index","Account")">Danh sách ngươi dùng</a></li>
+                                    <li><a href="@Url.Action("Index","Roles")">Danh sách chức vụ</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="glyphicon glyphicon-plus-sign red"></i><span style="font-weight: bold; color: #ff0000;">Nhà cung cấp</span></a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="@Url.Action("Index","NhaCungCap")">Danh sách nhà cung cấp</a></li>
+                                    <li><a href="/HopDong">Hợp đồng</a></li>
+                                    <li><a href="@Url.Action("Index","SanPhamCanMua")">Đấu giá hợp đồng cung cấp</a></li>
+                                    <li><a href="@Url.Action("Index","DanhSachDK")">Danh sách đăng ký cung cấp</a></li>
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <a href="#"><i class="glyphicon glyphicon-briefcase red"></i><span style="font-weight: bold; color: #ff0000;">Đơn hàng - Hóa đơn</span></a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="@Url.Action("Index","Donhang")">Đơn hàng của khách</a></li>
+                                    <li><a href="@Url.Action("TinhTrangGiaoHang","HopDong")">Đơn hàng của đối tác</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="glyphicon glyphicon-heart red"></i><span style="font-weight: bold; color: #ff0000;">Chăm sóc khách hàng</span></a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="@Url.Action("Index", "Comment")">Bình luận của khách</a></li>
+                                    <li><a href="@Url.Action("Index", "Comment")">Tư vấn trực tuyến</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="glyphicon glyphicon-list-alt red"></i><span style="font-weight: bold; color: #ff0000;"> Khu vực thống kê</span></a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="@Url.Action("ThongKeDoanhThu","ThongKe")">Doanh thu hàng tháng</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <!--Them B2B-->
+                                <a href="#"><i class="glyphicon glyphicon-gift red"></i><span style="font-weight: bold; color:#ff0000"> Khu vực B2B</span></a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="@Url.Action("GetNhaDoiTac", "AdminB2B")">Danh sách các Nhà Đối Tác</a></li>
+                                    <li><a href="@Url.Action("Theodoithanhtoan", "AdminB2B")">Quan lí thanh toán</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="glyphicon glyphicon-cog red"></i><span style="font-weight: bold; color: #ff0000;">Cài đặt</span></a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li><a href="@Url.Action("General","GiaoDien")">Cài đặt thông tin web</a></li>
+                                    <li><a href="#">Cài đặt giao diện</a></li>
+                                    <li><a href="#">Khác</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <!-- left menu ends -->
+            <noscript>
+                <div class="alert alert-block col-md-12">
+                    <h4 class="alert-heading">Warning!</h4>
+                    <p>
+                        You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
+                        enabled to use this site.
+                    </p>
+                </div>
+            </noscript>
+            <div id="content" class="col-lg-10 col-sm-10">
+                <!-- content starts -->
+                <div>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">@ViewBag.Title</a>
+                        </li>
+                    </ul>
+                </div>
+                @RenderBody()
+                <!-- content ends -->
+            </div><!--/#content.col-md-0-->
+        </div><!--/fluid-row-->
+        <hr>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h3>Settings</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>Here settings can be configured...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                        <a href="#" class="btn btn-primary" data-dismiss="modal">Save changes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="row">
+            <p class="col-md-9 col-sm-9 col-xs-12 copyright">
+                &copy; <a href="http://usman.it" target="_blank">
+                    Muhammad
+                    Usman
+                </a> 2012 - 2015
+            </p>
+            <p class="col-md-3 col-sm-3 col-xs-12 powered-by">
+                Powered by: <a href="http://usman.it/free-responsive-admin-template">Charisma</a>
+            </p>
+        </footer>
+    </div><!--/.fluid-container-->
+
+</body>
+</html>

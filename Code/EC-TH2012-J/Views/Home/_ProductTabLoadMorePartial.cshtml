@@ -1,0 +1,10 @@
+﻿@using EC_TH2012_J.Models;
+@model IQueryable<SanPham>
+
+@foreach (var item in Model)
+{
+    <div class="col-sm-4 col-md-3  no-margin product-item-holder hover">
+        @Html.Partial("_ProductGridShowPartal", item)
+    </div>
+}
+

@@ -1,0 +1,91 @@
+﻿@model EC_TH2012_J.Models.LoaiSP
+@{
+    ViewBag.Title = "Loại sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                <div class="form-inline" style="text-align: right; padding: 10px">
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="inputIcon" type="text" class="form-control" placeholder="Nhập tên loại" oninput="timkiemloaiSP()">
+                    </div>
+                    <div class="input-group">
+                        <a class="btn btn-danger" href='javascript:multibledel("@Url.Action("MultibleDel", "LoaiSP")")'>
+                            <i class="glyphicon glyphicon-trash icon-white"></i>
+                            Xóa các loại đã chọn
+                        </a>
+                    </div>
+
+                </div>
+                <div class="Ajax-Table">
+                    @Html.Action("TimLoaiSP", "LoaiSP")
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>Thêm @ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+
+                @using (Html.BeginForm("ThemLoaiSP", "LoaiSP", FormMethod.Post, new { autocomplete = "off" }))
+                {
+
+                    <div class="form-horizontal">
+                        <div class="alert alert-info" style="display:none">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary()
+                            <span id="kiemtratrung"></span>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TenLoai, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.TenLoai, new { @class = "form-control", oninput = "kiemgiatritrung(this.value,\"" + @Url.Action("kiemtra", "LoaiSP") + "\",\"#loaiisok\")" })                         
+                                @Html.ValidationMessageFor(model => model.TenLoai)
+                                <span id="loaiisok"></span>
+                            </div>
+                        </div>                   
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Thêm mới" class="btn btn-default"/>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<section id="main">
+    <div class="login-content">
+        <div class="pag-nav">
+            <ul class="p-list">
+                <li><a href="index.html">Home</a></li> &nbsp;&nbsp;/&nbsp;
+                <li class="act">&nbsp;Login</li>
+            </ul>
+        </div>
+        <div class="login-signup-form">
+            <div class="col-md-5 login text-center">
+                <h4>login</h4>
+                <div class="how_to">
+                    <a href="#"><div class="reg_fb"><img src=@Url.Content("~/images/facebook.png") alt=""><i>Facebook</i><div class="clearfix"></div></div></a>
+                    <a href="#"><div class="reg_gp"><img src=@Url.Content("~/images/gp.png") alt=""><i>GOOGLE</i><div class="clearfix"></div></div></a>
+                    <p><img src=@Url.Content("~/images/locked.png") alt="" />Be assured, we do not store your password</p>
+                </div>
+                <h5>OR</h5>
+                <div class="cus_info_wrap">
+                    <label class="labelTop">
+                        Email:
+                        <span class="require">*</span>
+                    </label>
+                    <input type="text" value="">
+                </div>
+                <div class="clearfix"></div>
+                <div class="cus_info_wrap">
+                    <label class="labelTop">
+                        Password:
+                        <span class="require">*</span>
+                    </label>
+                    <input type="text" value="">
+                </div>
+                <div class="clearfix"></div>
+                <div class="sky-form">
+                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Remember me on this computer </label>
+                </div>
+                <div class="botton1">
+                    <input type="submit" value="SIGNIN" class="botton">
+                </div>
+                <div class="forgetit">
+                    <a href="">forgot your password?</a>
+                    <input type="text" class="text" value="Enter email to reset it" onfocus="this.value = '';" onblur="if (this.value == 'Enter email to reset it') {this.value = 'Enter email to reset it';}">
+                    <input type="submit" value="SUBMIT" class="botton">
+                </div>
+            </div>
+            <div class="col-md-5 sign-up text-center">
+                <h4>signup</h4>
+                <div class="cus_info_wrap">
+                    <label class="labelTop">
+                        Email Id:
+                        <span class="require">*</span>
+                    </label>
+                    <input type="text" value="">
+                </div>
+                <div class="clearfix"></div>
+                <div class="cus_info_wrap">
+                    <label class="labelTop">
+                        Password:
+                        <span class="require">*</span>
+                    </label>
+                    <input type="text" value="">
+                </div>
+                <div class="clearfix"></div><div class="cus_info_wrap">
+                    <label class="labelTop confirmpass">
+                        Conform Password:
+                        <span class="require">*</span>
+                    </label>
+                    <input type="text" value="">
+                </div>
+                <div class="botton1">
+                    <input type="submit" value="SIGNIN" class="botton">
+                </div>
+            </div>
+            <div class="col-md-2 benefits">
+                <h4>Benefits of signup</h4>
+                <p>Manage your purchases anytime: Track your order status and print your vouchers</p>
+                <p>Quick shopping: no need to fill in your contact and shipping details while buying</p>
+                <p>Easy access to member only benefits</p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>

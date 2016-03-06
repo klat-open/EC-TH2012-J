@@ -1,0 +1,154 @@
+﻿@model EC_TH2012_J.Models.SanPham
+@{
+    ViewBag.Title = "EditSP";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/ckeditor/ckeditor.js"></script>
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                @using (Html.BeginForm("EditSP", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+
+                    <div class="form-horizontal">
+                        <div class="alert alert-info">
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary()
+                        </div>
+                        <div class="form-group">
+                            @Html.HiddenFor(model => model.MaSP)
+                            @Html.LabelFor(model => model.TenSP, new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.TenSP, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TenSP)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LoaiSP, "LoaiSP", new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.DropDownList("LoaiSP", null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.LoaiSP)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.HangSX, "HangSX", new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.DropDownList("HangSX", null, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HangSX)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.XuatXu, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(model => model.XuatXu, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.XuatXu)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.GiaGoc, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.GiaGoc, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GiaGoc)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MoTa, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", rows = "5" })
+                                @Html.ValidationMessageFor(model => model.MoTa)
+                                <script>
+                                    CKEDITOR.replace('MoTa');
+                                </script>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AnhDaiDien, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                <img id="anhdaidien" src="@Url.Content("~/images/products/")@Model.AnhDaiDien" alt="your image" height="200" width="200" />
+                                <input type="file" name="ad" accept=".jpg" class="form-control" onchange="readURL(this, '#anhdaidien');" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AnhNen, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                <img id="anhnen" src="@Url.Content("~/images/products/")@Model.AnhNen" alt="your image" height="200" width="200" />
+                                <input type="file" name="an" accept=".jpg" class="form-control" onchange="readURL(this, '#anhnen');" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AnhKhac, new { @class = "control-label col-md-2" })
+                            <div class="col-md-3">
+                                <img id="anhkhac" src="@Url.Content("~/images/products/")@Model.AnhKhac" alt="your image" height="200" width="200" />
+                                <input type="file" name="ak" accept=".jpg" class="form-control" onchange="readURL(this, '#anhkhac');" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.SoLuong, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.SoLuong, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SoLuong)
+                            </div>
+                        </div>
+
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.MaKT, "MaKT", new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("MaKT", String.Empty)
+                                    @Html.ValidationMessageFor(model => model.MaKT)
+                                </div>
+                            </div>*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.isnew, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.isnew, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.isnew)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ishot, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ishot, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ishot)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <a class="btn btn-danger" href="@Url.Action("SuaThongSoKT", "Admin", new { masp = Model.MaSP })">
+                                    <i class="glyphicon glyphicon-wrench icon-white"></i>
+                                    Sửa thông số kỹ thuật
+                                </a>
+                                <input type="submit" value="Cập nhật" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->

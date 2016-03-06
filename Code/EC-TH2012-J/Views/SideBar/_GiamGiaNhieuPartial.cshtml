@@ -1,0 +1,11 @@
+﻿@model IQueryable<EC_TH2012_J.Models.SanPham>
+
+<div class="widget">
+    <h1 class="border">Giảm giá nhiều</h1>
+    <ul class="product-list">
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_MiniProductPartial", item)
+        }
+    </ul>
+</div><!-- /.widget -->

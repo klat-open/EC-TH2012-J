@@ -1,0 +1,177 @@
+﻿
+@{
+    ViewBag.Title = "Tình trạng giao hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Datetimepicker/jquery-ui.css" rel="stylesheet" />
+<script src="~/Datetimepicker/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".news_date").datepicker();
+    });
+</script>
+<script>
+    function GetAliasDetails() {
+        var text = $('#sanpham').val();
+        if (text != '') {
+            $("#divLoader").show();
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "@Url.Action("SearchByName", "Search")",
+                data: "{term:'" + text + "'}",
+            dataType: "json",
+            success: function (data) {
+                if (data != null) {
+                    var html = "<div style=\"border:3px solid #c6c6c6;background-color: #fff;\">";
+                    html += "<table>";
+                    $.each(data, function (i, item) {
+                        html += "<tbody class=\"hoversearch\"  onclick=\"updategiatri(\'" + item.MaSP + "\')\"><tr>";
+                        html += "<td style=\"padding:5px\" rowspan=\"2\"><img width=\"50\" height=\"50\" src=\"@Url.Content("~/images/products/")" + item.AnhDaiDien + "\" /></td>";
+                        html += "<td style=\"padding:5px\"><span class=\"bold\">" + item.TenSP + "</span></td></tr>";
+                        html += "<tr><td style=\"padding:5px\"><span style=\"color:#2A1051\" class=\"bold\">" + item.GiaTien.toLocaleString() + " VNĐ</span></td></tr>";
+                        html += "</tbody>";
+                    })
+                    html += "</table></div>";
+                    $("#divAutoComplete").html(html).show(500);
+                }
+            },
+            error: function (result) {
+                $("#divLoader").hide();
+            }
+        });
+    }
+    else {
+            close();
+    }
+    }
+
+
+    function close() {
+        $("#divAutoComplete").html('');
+        $("#divAutoComplete").slideUp(1000);
+        $("#divLoader").hide();
+    }
+
+    function updategiatri(val)
+    {
+        $('#sanpham').val(val);
+        $("#divAutoComplete").hide(500);
+    }
+
+
+    function GetAliasDetailsncc() {
+        var text = $('#nhacungcap').val();
+        if (text != '') {
+            $.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "@Url.Action("SearchByName", "NhaCungCap")",
+                data: "{term:'" + text + "'}",
+            dataType: "json",
+            success: function (data) {
+                if (data != null) {
+                    var html = "<div style=\"border:3px solid #c6c6c6;background-color: #fff;\">";
+                    html += "<table>";
+                    $.each(data, function (i, item) {
+                        html += "<tbody class=\"hoversearch\"  onclick=\"updategiatrincc(\'" + item.MaNCC + "\')\"><tr>";
+                        html += "<td style=\"padding:5px\"><span class=\"bold\">" + item.TenNCC + "</span></td></tr>";
+                        html += "</tbody>"
+                    })
+                    html += "</table></div>";
+                    $("#divAutoCompletencc").html(html).show(500);
+                }
+            },
+            error: function (result) {
+                $("#divLoader").hide();
+            }
+        });
+    }
+    else {
+            closencc();
+    }
+    }
+
+
+    function closencc() {
+        $("#divAutoCompletencc").html('');
+        $("#divAutoCompletencc").slideUp(1000);
+        $("#divLoader").hide();
+    }
+
+    function updategiatrincc(val)
+    {
+        $('#nhacungcap').val(val);
+        $("#divAutoCompletencc").hide(500);
+    }
+</script>
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <div class="box-icon">
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default">
+                        <i class="glyphicon glyphicon-chevron-up"></i>
+                    </a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div class="alert alert-info" id="alert-info" style="display:none"></div>
+                <div class="form-inline" style="text-align: right; padding: 10px">
+
+                    <div class="input-group">
+                        @Html.DropDownList("ttrang", new SelectList(new List<object>
+                        {
+                            new { value = true , text = "Đã giao"  },
+                            new { value = false , text = "Chưa giao" },
+                        }, "value", "text"), "--- Tình trạng ---", new { @class = "form-control", id = "ttrang", onchange = "timkiemhopdong1()" })
+                    </div>
+
+
+                    <div class="input-group">
+                        @Html.DropDownList("Role", new SelectList(new List<object>
+                        {
+                            new { value = true , text = "Hợp đồng mua"  },
+                            new { value = false , text = "Hợp đồng bán" },
+                        }, "value", "text"), "--- Loại hợp đồng ---", new { @class = "form-control", id = "loaihd", onchange = "timkiemhopdong1()" })
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="tensp" type="text" class="form-control" placeholder="Tên sản phẩm" oninput="timkiemhopdong1()">
+                    </div>
+
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <input id="mahd" type="text" class="form-control" placeholder="Mã hợp đồng" oninput="timkiemhopdong1()">
+                    </div>
+
+                    <div class="input-group">
+                        <a class="btn btn-success" href='javascript:multibleupdate("@Url.Action("XacNhanDaGiao", "HopDong")")'>
+                            <i class="glyphicon glyphicon-ok icon-white"></i>
+                            Xác nhận đã giao hàng
+                        </a>
+                    </div>
+
+                    <div class="input-group">
+                        <a class="btn btn-info" href='javascript:multibleupdate("@Url.Action("XacNhanThanhToan", "HopDong")")'>
+                            <i class="glyphicon glyphicon-ok icon-white"></i>
+                            Xác nhận đã thanh toán
+                        </a>
+                    </div>
+
+                </div>
+                <div class="Ajax-Table">
+                    @Html.Action("TTGiaoHang", "HopDong")
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+</div><!--/row-->
+
